@@ -3,6 +3,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 plugins {
     id(Plugins.Id.springBoot) version Versions.springBootPlugin apply false
     id(Plugins.Id.springDependencyManagement) version Versions.springDependencyManagementPlugin apply false
+    id(Plugins.Id.ktlint) version Versions.ktlint
 
     kotlin(Plugins.Module.jvm) version Versions.kotlinPlugin
     kotlin(Plugins.Module.spring) version Versions.kotlinPlugin apply false
