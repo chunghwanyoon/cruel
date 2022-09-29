@@ -2,6 +2,8 @@ object Dependencies {
     object Kotlin {
         const val reflect = "org.jetbrains.kotlin:kotlin-reflect"
         const val jvm = "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+        const val jackson = "com.fasterxml.jackson.module:jackson-module-kotlin"
+        const val jacksonDataType = "com.fasterxml.jackson.datatype:jackson-datatype-jsr310"
     }
 
     object Spring {
@@ -19,6 +21,12 @@ object Dependencies {
         const val springDoc = "org.springdoc:springdoc-openapi-ui:${Versions.springDoc}"
         const val log4j2 = "org.springframework.boot:spring-boot-starter-log4j2"
         const val actuator = "org.springframework.boot:spring-boot-starter-actuator"
+    }
+
+    object Jwt {
+        const val api = "io.jsonwebtoken:jjwt-api:${Versions.jjwt}"
+        const val impl = "io.jsonwebtoken:jjwt-impl:${Versions.jjwt}"
+        const val jackson = "io.jsonwebtoken:jjwt-jackson:${Versions.jjwt}"
     }
 
     object Data {
@@ -44,5 +52,9 @@ object Dependencies {
         const val log4j2Core = "org.apache.logging.log4j:log4j-core:${Versions.log4j2}"
         const val jsonTemplateLayout =
             "org.apache.logging.log4j:log4j-layout-template-json:${Versions.log4j2}"
+    }
+
+    object Cruel {
+        const val core = ":cruel-core"
     }
 }

@@ -1,0 +1,73 @@
+spring:
+    application:
+        name: cruel-app-web
+    profiles:
+        active: local
+        group:
+            local: common, local
+            develop: common, develop
+            production: common, production
+---
+server:
+    shutdown: graceful
+
+spring:
+    config:
+        activate:
+            on-profile: common
+
+    mvc:
+        pathmatch:
+            matching-strategy: ant_path_matcher
+
+management:
+    endpoint:
+        health:
+            probes:
+                enabled: true
+    health:
+        livenessState:
+            enabled: true
+        readinessState:
+            enabled: true
+
+---
+spring:
+    config:
+        activate:
+            on-profile: local, develop
+springdoc:
+    swagger-ui:
+        path: /api/docs
+
+---
+spring:
+    config:
+        activate:
+            on-profile: docker
+
+cruel:
+    jwt:
+        secret: "zmfndjfdlsxjsjfxhzmsdmsaucwkrksjadjdigkseksmsepanjswlwkfahfmrpRtekrmsidrlfrpgkwk"
+        expiry-seconds: 3600 # 1h
+    internal-token: zmfndjfdlsxjsjfxhzms
+
+---
+spring:
+    config:
+        activate:
+            on-profile: production
+springdoc:
+    swagger-ui:
+        enabled: false
+        doc-expansion: none
+---
+server:
+    port: 8080
+
+cruel:
+    jwt:
+        secret: "zmfndjfdlsxjsjfxhzmsdmsaucwkrksjadjdigkseksmsepanjswlwkfahfmrpRtekrmsidrlfrpgkwk"
+        expiry-seconds: 3600 # 1h
+    internal-token: zmfndjfdlsxjsjfxhzms
+

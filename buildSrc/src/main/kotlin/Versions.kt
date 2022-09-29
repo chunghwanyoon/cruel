@@ -9,6 +9,8 @@ object Versions {
     const val springCloud = "2021.0.2"
     const val springDoc = "1.6.9"
 
+    const val jjwt = "0.11.2"
+
     // Test
     const val kotest = "5.3.0"
     const val mockk = "1.12.4"

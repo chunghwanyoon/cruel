@@ -1,5 +1,4 @@
 package io.fana.cruel.core.exception
-import java.util.Locale
 
 data class HttpErrorResponse(
     val message: String,
