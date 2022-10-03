@@ -2,6 +2,7 @@ object Versions {
     const val jvmTarget = "18"
 
     const val kotlinPlugin = "1.6.21"
+    const val coroutines = "1.6.1"
     const val ktlint = "10.2.0"
 
     const val springBootPlugin = "2.6.7"

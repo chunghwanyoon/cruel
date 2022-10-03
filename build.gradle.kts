@@ -15,6 +15,10 @@ allprojects {
     group = "io.fana.cruel"
     version = "0.0.1"
 
+    // for fix kotest bug
+    // @see https://github.com/kotest/kotest/issues/1603#issuecomment-801027459
+    extra["kotlin-coroutines.version"] = Versions.coroutines
+
     repositories {
         mavenCentral()
     }

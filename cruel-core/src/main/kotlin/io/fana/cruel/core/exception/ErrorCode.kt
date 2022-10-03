@@ -14,7 +14,10 @@ enum class ErrorCode(
     INVALID_JWT_TOKEN(ErrorGroup.AUTH, "001", "ERR_INVALID_JWT_TOKEN"),
     INVALID_INTERNAL_TOKEN(ErrorGroup.AUTH, "002", "ERR_INVALID_INTERNAL_TOKEN"),
     AUTHENTICATION_FAILED(ErrorGroup.AUTH, "003", "ERR_AUTHENTICATION_FAILED"),
-    UNAUTHORIZED_USER(ErrorGroup.AUTH, "004", "ERR_UNAUTHORIZED_USER");
+    UNAUTHORIZED_USER(ErrorGroup.AUTH, "004", "ERR_UNAUTHORIZED_USER"),
+
+    /* 유저 */
+    USER_NOT_FOUND(ErrorGroup.USER, "001", "ERR_USER_NOT_FOUND");
 
     val errorCode: String
         get() = group.prefix + value
