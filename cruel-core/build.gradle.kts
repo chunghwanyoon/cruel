@@ -9,7 +9,10 @@ tasks.getByName<Jar>("jar") {
 }
 
 plugins {
+    kotlin(Plugins.Module.jpa)
 }
 
 dependencies {
+    implementation(Dependencies.Data.jpa)
+    implementation(Dependencies.Data.jdsl)
 }
