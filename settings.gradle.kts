@@ -1,9 +1,13 @@
 rootProject.name = "cruel"
 
-// common
+// core
 include("cruel-core")
+
+// common domain modules
+include("cruel-domain-common")
+
+// domain layers
+include("cruel-domain-mysql")
 
 // executable applications
 include("cruel-app-web")
-include("cruel-domain-mysql")
-include("cruel-domain-common")
