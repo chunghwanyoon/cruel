@@ -56,5 +56,6 @@ object Dependencies {
 
     object Cruel {
         const val core = ":cruel-core"
+        const val cruelMysql = ":cruel-domain-mysql"
     }
 }
