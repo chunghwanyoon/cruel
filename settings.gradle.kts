@@ -6,3 +6,4 @@ include("cruel-core")
 // executable applications
 include("cruel-app-web")
 include("cruel-domain-mysql")
+include("cruel-domain-common")

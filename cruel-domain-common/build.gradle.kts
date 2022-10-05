@@ -19,7 +19,6 @@ plugins {
 
 dependencies {
     implementation(project(Dependencies.Cruel.core))
-    implementation(project(Dependencies.Cruel.common))
 
     implementation(Dependencies.Data.jpa)
     implementation(Dependencies.Data.jdsl)
