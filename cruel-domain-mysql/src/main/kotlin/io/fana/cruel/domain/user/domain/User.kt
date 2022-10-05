@@ -1,6 +1,8 @@
-package io.fana.cruel.core.entity.user
+package io.fana.cruel.domain.user.domain
 
-import io.fana.cruel.core.entity.auth.LoginMethod
+import io.fana.cruel.core.type.LoginType
+import io.fana.cruel.domain.auth.domain.LoginMethod
+import io.fana.cruel.domain.user.exception.LoginMethodNotFoundException
 import org.springframework.data.annotation.CreatedDate
 import org.springframework.data.annotation.LastModifiedDate
 import org.springframework.data.jpa.domain.support.AuditingEntityListener
@@ -61,6 +63,13 @@ class User(
     @Column(name = "deleted_at")
     var deletedAt: LocalDateTime? = null
         private set
+
+    fun addLoginMethod(loginMethod: LoginMethod) =
+        this.loginMethods.add(loginMethod)
+
+    fun getLoginMethodByLoginTypeAndVersion(loginType: LoginType, version: Int): LoginMethod =
+        this.loginMethods.find { it.loginType === loginType && it.version == version }
+            ?: throw LoginMethodNotFoundException.of(loginType, version)
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true

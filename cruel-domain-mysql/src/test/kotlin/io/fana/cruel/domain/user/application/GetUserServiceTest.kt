@@ -1,7 +1,7 @@
 package io.fana.cruel.domain.user.application
 
 import com.navercorp.fixturemonkey.FixtureMonkey
-import io.fana.cruel.core.entity.user.User
+import io.fana.cruel.domain.user.domain.User
 import io.fana.cruel.domain.user.domain.UserRepository
 import io.fana.cruel.domain.user.exception.UserNotFoundException
 import io.kotest.assertions.throwables.shouldThrow

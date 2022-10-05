@@ -1,6 +1,6 @@
 package io.fana.cruel.domain.user.application
 
-import io.fana.cruel.core.entity.user.User
+import io.fana.cruel.domain.user.domain.User
 import io.fana.cruel.domain.user.domain.UserRepository
 import io.fana.cruel.domain.user.exception.UserNotFoundException
 import org.springframework.stereotype.Service

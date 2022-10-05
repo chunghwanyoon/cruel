@@ -1,4 +1,4 @@
-package io.fana.cruel.core.entity.auth
+package io.fana.cruel.domain.auth.domain
 
 import io.fana.cruel.core.type.LoginType
 import org.springframework.data.annotation.CreatedDate
