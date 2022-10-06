@@ -31,12 +31,12 @@ import javax.persistence.Table
 )
 @Entity
 class User(
+    @Column(name = "nick_name", length = 16, nullable = false)
+    val nickName: String,
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long = 0L,
-
-    @Column(name = "nick_name", length = 16, nullable = false)
-    val nickName: String,
 ) {
     @OneToMany(
         fetch = FetchType.LAZY,

@@ -14,6 +14,8 @@ class GetUserService(
     fun getUserById(userId: Long): User =
         userRepository.findUserById(userId) ?: throw UserNotFoundException.ofId(userId)
 
+    fun findUserByNickName(nickName: String): User? = userRepository.findUserByNickName(nickName)
+
     fun getUserByNickName(nickName: String): User =
-        userRepository.findUserByNickName(nickName) ?: throw UserNotFoundException.ofNickName(nickName)
+        findUserByNickName(nickName) ?: throw UserNotFoundException.ofNickName(nickName)
 }

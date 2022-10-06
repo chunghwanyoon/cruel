@@ -20,7 +20,8 @@ enum class ErrorCode(
 
     /* 유저 */
     USER_NOT_FOUND(ErrorGroup.USER, "001", "ERR_USER_NOT_FOUND"),
-    INVALID_NICK_NAME(ErrorGroup.USER, "002", "ERR_INVALID_NICK_NAME");
+    INVALID_NICK_NAME(ErrorGroup.USER, "002", "ERR_INVALID_NICK_NAME"),
+    DUPLICATED_NICK_NAME(ErrorGroup.USER, "003", "ERR_DUPLICATED_NICK_NAME");
 
     val errorCode: String
         get() = group.prefix + value
