@@ -5,6 +5,7 @@ import io.fana.cruel.domain.auth.exception.InvalidUserNickNameException
 import io.fana.cruel.domain.user.application.CreateUserService
 import io.fana.cruel.domain.user.application.GetUserService
 import io.fana.cruel.domain.user.domain.User
+import io.fana.cruel.domain.util.randomAlphaNumeric
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
@@ -38,6 +39,8 @@ class SignUpService(
             throw InvalidPasswordException.ofSize()
         }
     }
+
+    private fun randomSalt(size: Int) = randomAlphaNumeric(size)
 
     companion object {
         const val MIN_NICK_NAME_LENGTH = 3

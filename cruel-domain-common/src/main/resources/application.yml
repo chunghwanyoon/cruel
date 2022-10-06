@@ -1,0 +1,12 @@
+spring:
+    application:
+        name: cruel-domain-common
+    profiles:
+        active: local
+        group:
+            local: common, local
+            develop: common, develop
+            production: common, production
+---
+cruel:
+    secret-key: "ThisIsTempSecretKey"
