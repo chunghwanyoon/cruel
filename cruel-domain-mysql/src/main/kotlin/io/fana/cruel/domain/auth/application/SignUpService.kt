@@ -9,6 +9,7 @@ import io.fana.cruel.domain.crypt.application.CryptService
 import io.fana.cruel.domain.user.application.CreateUserService
 import io.fana.cruel.domain.user.application.GetUserService
 import io.fana.cruel.domain.user.domain.User
+import io.fana.cruel.domain.user.domain.User.Companion.DEFAULT_VERSION
 import io.fana.cruel.domain.util.randomAlphaNumeric
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
@@ -26,22 +27,23 @@ class SignUpService(
         requireValidNickNamePattern(nickName)
         requireValidPasswordLength(plainPassword)
         val user = createUserService.createUser(nickName)
-        val hashedPassword = cryptService.encrypt(plainPassword, randomSalt())
-        user.addLoginMethod(createDefaultLoginMethod(user.id, hashedPassword))
+        val randomSalt = randomSalt()
+        val hashedPassword = cryptService.encrypt(plainPassword, randomSalt)
+        user.addLoginMethod(createDefaultLoginMethod(randomSalt, hashedPassword))
         return user
     }
 
-    private fun createDefaultLoginMethod(userId: Long, hashedPassword: String): LoginMethod {
+    private fun createDefaultLoginMethod(salt: String, hashedPassword: String): LoginMethod {
         return LoginMethod(
-            userId = userId,
             loginType = LoginType.PASSWORD,
             hashedValue = hashedPassword,
-            randomSalt = randomSalt(),
+            randomSalt = salt,
             version = DEFAULT_VERSION
         )
     }
 
     private fun requireUniqueNickName(nickName: String) {
+        // TODO: validations for lower, uppercase uniqueness
         val user = getUserService.findUserByNickName(nickName)
         if (user !== null) {
             throw DuplicatedUserNickNameException.of(nickName)
@@ -73,7 +75,6 @@ class SignUpService(
         const val MAX_NICK_NAME_LENGTH = 16
         const val MIN_PASSWORD_LENGTH = 8
         const val MAX_PASSWORD_LENGTH = 32
-        const val DEFAULT_VERSION = 1
         val NICK_NAME_VALID_PATTERN = Regex("^[a-zA-Z0-9_-]*$") // alpha numeric + underscore('_') + dash('-')
     }
 }

@@ -27,9 +27,6 @@ import javax.persistence.Table
 )
 @Entity
 class LoginMethod(
-    @Column(name = "user_id", nullable = false)
-    val userId: Long,
-
     @Enumerated(EnumType.STRING)
     @Column(name = "login_type", nullable = false)
     val loginType: LoginType,

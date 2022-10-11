@@ -1,6 +1,5 @@
 package io.fana.cruel.domain.crypt.application
 
-import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Service
 import java.util.Base64
 import javax.crypto.Mac
@@ -8,8 +7,8 @@ import javax.crypto.spec.SecretKeySpec
 
 @Service
 class CryptService(
-    @Value("#{cruel.secret-key}")
-    private val secretKey: String,
+    // @Value("#{cruel.secret-key}")
+    private val secretKey: String = "ThisIsTempSecretKey",
 ) {
     fun encrypt(data: String, salt: String? = ""): String {
         val sha256Hmac = Mac.getInstance(ALGORITHM)

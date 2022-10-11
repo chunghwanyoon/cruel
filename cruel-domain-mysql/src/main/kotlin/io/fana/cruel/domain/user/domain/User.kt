@@ -67,7 +67,11 @@ class User(
     fun addLoginMethod(loginMethod: LoginMethod) =
         this.loginMethods.add(loginMethod)
 
-    fun getLoginMethodByLoginTypeAndVersion(loginType: LoginType, version: Int): LoginMethod =
+    fun getRandomSalt() = getLoginMethodByLoginTypeAndVersion(LoginType.PASSWORD).randomSalt
+
+    fun hashedPassword() = getLoginMethodByLoginTypeAndVersion(LoginType.PASSWORD).hashedValue
+
+    private fun getLoginMethodByLoginTypeAndVersion(loginType: LoginType, version: Int = DEFAULT_VERSION): LoginMethod =
         this.loginMethods.find { it.loginType === loginType && it.version == version }
             ?: throw LoginMethodNotFoundException.of(loginType, version)
 
@@ -84,5 +88,9 @@ class User(
 
     override fun hashCode(): Int {
         return id.hashCode()
+    }
+
+    companion object {
+        const val DEFAULT_VERSION = 1
     }
 }

@@ -14,6 +14,7 @@ repositories {
 
 dependencies {
     implementation(project(Dependencies.Cruel.core))
+    implementation(project(Dependencies.Cruel.common))
     implementation(project(Dependencies.Cruel.cruelMysql))
 
     implementation(Dependencies.Spring.web)
