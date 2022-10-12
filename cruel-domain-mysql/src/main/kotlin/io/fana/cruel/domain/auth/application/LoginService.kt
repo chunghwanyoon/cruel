@@ -21,8 +21,6 @@ class LoginService(
 
     private fun validatePassword(user: User, plainPassword: String) {
         val hashedValue = cryptService.encrypt(plainPassword, user.getRandomSalt())
-        println(hashedValue)
-        println(user.hashedPassword())
         if (hashedValue != user.hashedPassword()) {
             throw LoginFailedException()
         }
