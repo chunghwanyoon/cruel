@@ -1,8 +1,8 @@
-# It's such a cruel world!
+# Cruel
 
 # TODO List
 - [x] Sign Up
-- [ ] Login
+- [x] Login
 - [ ] Enroll Team
 - [ ] Join to Team
 - [ ] Accept members from leader

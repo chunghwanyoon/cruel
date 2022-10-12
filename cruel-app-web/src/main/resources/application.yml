@@ -8,6 +8,20 @@ spring:
             develop: common, develop
             production: common, production
 ---
+server:
+    shutdown: graceful
+
+management:
+    endpoint:
+        health:
+            probes:
+                enabled: true
+    health:
+        livenessState:
+            enabled: true
+        readinessState:
+            enabled: true
+---
 spring:
     config:
         activate:
@@ -20,19 +34,18 @@ spring:
     config:
         activate:
             on-profile: local, develop
-springfox:
-    documentation:
-        swagger-ui:
-            base-url: /api/docs
-        enabled: true
+springdoc:
+    swagger-ui:
+        path: /api/docs
 ---
 spring:
     config:
         activate:
             on-profile: production
-springfox:
-    documentation:
+springdoc:
+    swagger-ui:
         enabled: false
+        doc-expansion: none
 ---
 server:
     port: 8080
