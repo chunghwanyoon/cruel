@@ -6,13 +6,11 @@ import io.fana.cruel.domain.base.BaseEntity
 import io.fana.cruel.domain.user.exception.LoginMethodNotFoundException
 import org.springframework.data.annotation.CreatedDate
 import org.springframework.data.annotation.LastModifiedDate
-import org.springframework.data.jpa.domain.support.AuditingEntityListener
 import java.time.LocalDateTime
 import javax.persistence.CascadeType
 import javax.persistence.Column
 import javax.persistence.ConstraintMode
 import javax.persistence.Entity
-import javax.persistence.EntityListeners
 import javax.persistence.FetchType
 import javax.persistence.ForeignKey
 import javax.persistence.Index
@@ -20,7 +18,6 @@ import javax.persistence.JoinColumn
 import javax.persistence.OneToMany
 import javax.persistence.Table
 
-@EntityListeners(value = [AuditingEntityListener::class])
 @Table(
     name = "users",
     indexes = [
