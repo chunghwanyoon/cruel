@@ -2,6 +2,7 @@ package io.fana.cruel.domain.user.domain
 
 import io.fana.cruel.core.type.LoginType
 import io.fana.cruel.domain.auth.domain.LoginMethod
+import io.fana.cruel.domain.base.BaseEntity
 import io.fana.cruel.domain.user.exception.LoginMethodNotFoundException
 import org.springframework.data.annotation.CreatedDate
 import org.springframework.data.annotation.LastModifiedDate
@@ -14,9 +15,6 @@ import javax.persistence.Entity
 import javax.persistence.EntityListeners
 import javax.persistence.FetchType
 import javax.persistence.ForeignKey
-import javax.persistence.GeneratedValue
-import javax.persistence.GenerationType
-import javax.persistence.Id
 import javax.persistence.Index
 import javax.persistence.JoinColumn
 import javax.persistence.OneToMany
@@ -33,11 +31,7 @@ import javax.persistence.Table
 class User(
     @Column(name = "nick_name", length = 16, nullable = false)
     val nickName: String,
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Long = 0L,
-) {
+) : BaseEntity() {
     @OneToMany(
         fetch = FetchType.LAZY,
         cascade = [CascadeType.ALL],
@@ -74,21 +68,6 @@ class User(
     private fun getLoginMethodByLoginTypeAndVersion(loginType: LoginType, version: Int = DEFAULT_VERSION): LoginMethod =
         this.loginMethods.find { it.loginType === loginType && it.version == version }
             ?: throw LoginMethodNotFoundException.of(loginType, version)
-
-    override fun equals(other: Any?): Boolean {
-        if (this === other) return true
-        if (javaClass != other?.javaClass) return false
-
-        other as User
-
-        if (id != other.id) return false
-
-        return true
-    }
-
-    override fun hashCode(): Int {
-        return id.hashCode()
-    }
 
     companion object {
         const val DEFAULT_VERSION = 1
