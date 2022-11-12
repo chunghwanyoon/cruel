@@ -12,20 +12,23 @@ import javax.persistence.Table
 @Table(
     name = "return_schedules",
     indexes = [
+        Index(name = "idx_return_schedules_order_id", columnList = "order_id"),
         Index(name = "idx_return_schedules_principal", columnList = "principal"),
-        Index(name = "idx_return_schedules_interest", columnList = "interest"),
+        Index(name = "idx_return_schedules_interest_amount", columnList = "interest"),
         Index(name = "idx_return_schedules_scheduled_at", columnList = "scheduled_at"),
         Index(name = "idx_return_schedules_is_returned", columnList = "is_returned"),
     ]
 )
 @Entity
 class ReturnSchedule(
-    // TODO: need relation with Order or something
+    @Column(name = "order_id", nullable = false)
+    val orderId: Long,
+
     @Column(name = "principal", nullable = false)
     val principal: Int,
 
-    @Column(name = "interest", nullable = false)
-    val interest: Int, // TODO: check Int?
+    @Column(name = "interest_amount", nullable = false)
+    val interestAmount: Int,
 
     scheduledAt: LocalDateTime,
 ) : BaseEntity() {
