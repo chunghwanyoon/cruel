@@ -18,7 +18,8 @@ object Versions {
     const val springMockk = "3.1.1"
     const val kotlinJdsl = "2.0.2.RELEASE"
     const val faker = "1.0.2"
-    const val fixtureMonkey = "0.3.1"
+    const val fixtureMonkey = "0.4.3"
+    const val kotlinFixture = "1.2.0"
 
     const val mapStruct = "1.5.2.Final"
 
