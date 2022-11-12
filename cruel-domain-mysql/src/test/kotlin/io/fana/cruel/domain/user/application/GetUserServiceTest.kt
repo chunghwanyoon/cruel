@@ -1,7 +1,6 @@
 package io.fana.cruel.domain.user.application
 
 import com.appmattus.kotlinfixture.kotlinFixture
-import com.navercorp.fixturemonkey.FixtureMonkey
 import io.fana.cruel.domain.user.domain.User
 import io.fana.cruel.domain.user.domain.UserRepository
 import io.fana.cruel.domain.user.exception.UserNotFoundException
@@ -21,12 +20,8 @@ internal class GetUserServiceTest : BehaviorSpec({
     )
     val userId = 1L
     val userNickName = "Cruel"
-    val userFixture = FixtureMonkey.create()
-        .giveMeBuilder(User::class.java)
-        .set("nickName", userNickName)
-        .set("id", userId)
-        .sample()
     val fixture = kotlinFixture()
+    val userFixture = fixture<User>()
 
     given("유저가 주어졌을 때") {
         `when`("유저 아이디가 주어지면") {

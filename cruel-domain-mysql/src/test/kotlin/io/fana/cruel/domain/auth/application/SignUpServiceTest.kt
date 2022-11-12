@@ -1,7 +1,8 @@
 package io.fana.cruel.domain.auth.application
 
-import com.navercorp.fixturemonkey.FixtureMonkey
+import com.appmattus.kotlinfixture.kotlinFixture
 import io.fana.cruel.core.type.LoginType
+import io.fana.cruel.domain.auth.domain.LoginMethod
 import io.fana.cruel.domain.auth.exception.DuplicatedUserNickNameException
 import io.fana.cruel.domain.auth.exception.InvalidPasswordException
 import io.fana.cruel.domain.auth.exception.InvalidUserNickNameException
@@ -31,10 +32,15 @@ internal class SignUpServiceTest : BehaviorSpec({
     val nickName = "FANA"
     val plainPassword = "PLAIN_PASSWORD"
     val hashedPassword = "HASHED_PASSWORD"
-    val userFixture = FixtureMonkey.create()
-        .giveMeBuilder(User::class.java)
-        .set("nickName", nickName)
-        .sample()
+    val fixture = kotlinFixture()
+    val loginMethodFixture = fixture<LoginMethod> {
+        property(LoginMethod::loginType) { LoginType.PASSWORD }
+        property(LoginMethod::version) { 1 }
+        property(LoginMethod::hashedValue) { hashedPassword }
+    }
+    val userFixture = fixture<User> {
+        property(User::loginMethods) { mutableListOf(loginMethodFixture) }
+    }
 
     given("닉네임과 패스워드가 주어졌을 때") {
         every { getUserService.findUserByNickName(any()) } returns null
