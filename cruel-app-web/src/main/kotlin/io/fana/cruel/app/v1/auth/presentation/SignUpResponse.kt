@@ -1,4 +1,4 @@
-package io.fana.cruel.app.v1.auth
+package io.fana.cruel.app.v1.auth.presentation
 
 import io.fana.cruel.domain.user.domain.User
 import java.time.LocalDateTime

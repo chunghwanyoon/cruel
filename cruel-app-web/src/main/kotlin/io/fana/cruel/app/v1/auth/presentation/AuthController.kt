@@ -1,4 +1,4 @@
-package io.fana.cruel.app.v1.auth
+package io.fana.cruel.app.v1.auth.presentation
 
 import io.fana.cruel.app.security.JwtProvider
 import io.fana.cruel.app.security.UserRole
@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-@RequestMapping("/api/auth")
+@RequestMapping("/api/v1/auth")
 class AuthController(
     private val signUpService: SignUpService,
     private val loginService: LoginService,
