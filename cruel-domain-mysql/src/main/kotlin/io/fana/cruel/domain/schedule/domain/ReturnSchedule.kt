@@ -14,7 +14,7 @@ import javax.persistence.Table
     indexes = [
         Index(name = "idx_return_schedules_order_id", columnList = "order_id"),
         Index(name = "idx_return_schedules_principal", columnList = "principal"),
-        Index(name = "idx_return_schedules_interest_amount", columnList = "interest"),
+        Index(name = "idx_return_schedules_interest_amount", columnList = "interest_amount"),
         Index(name = "idx_return_schedules_scheduled_at", columnList = "scheduled_at"),
         Index(name = "idx_return_schedules_is_returned", columnList = "is_returned"),
     ]

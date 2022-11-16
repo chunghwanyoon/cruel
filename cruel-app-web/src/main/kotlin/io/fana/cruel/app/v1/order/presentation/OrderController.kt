@@ -22,7 +22,10 @@ class OrderController(
     @Operation(operationId = "getOrders", description = "유저의 주문 목록 조회")
     @ApiResponse(description = "조회 성공", responseCode = "200")
     @GetMapping
-    fun getOrders(loginUser: LoginUser): List<OrderResponse> {
+    fun getOrders(
+        @Parameter(hidden = true)
+        loginUser: LoginUser,
+    ): List<OrderResponse> {
         return OrderResponse.of(getOrderService.getOrdersByUserId(loginUser.id))
     }
 
@@ -30,6 +33,7 @@ class OrderController(
     @ApiResponse(description = "조회 성공", responseCode = "200")
     @GetMapping("/{orderId}")
     fun getOrderById(
+        @Parameter(hidden = true)
         loginUser: LoginUser,
         @PathVariable("orderId")
         @Parameter(name = "orderId", `in` = ParameterIn.PATH, description = "orderId", example = "1")
