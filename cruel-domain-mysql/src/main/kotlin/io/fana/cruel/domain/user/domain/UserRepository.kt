@@ -1,5 +1,8 @@
 package io.fana.cruel.domain.user.domain
 
+import org.springframework.stereotype.Repository
+
+@Repository
 interface UserRepository {
     fun findUserById(id: Long): User?
 
