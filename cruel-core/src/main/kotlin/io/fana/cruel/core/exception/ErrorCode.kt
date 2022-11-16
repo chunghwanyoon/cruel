@@ -24,7 +24,8 @@ enum class ErrorCode(
     DUPLICATED_NICK_NAME(ErrorGroup.USER, "003", "ERR_DUPLICATED_NICK_NAME"),
 
     /* 주문 */
-    INVALID_ORDER_STATUS(ErrorGroup.ORDER, "001", "ERR_INVALID_ORDER_STATUS");
+    INVALID_ORDER_STATUS(ErrorGroup.ORDER, "001", "ERR_INVALID_ORDER_STATUS"),
+    ORDER_NOT_FOUND(ErrorGroup.ORDER, "002", "ERR_ORDER_NOT_FOUND");
 
     val errorCode: String
         get() = group.prefix + value
