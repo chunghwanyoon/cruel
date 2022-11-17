@@ -3,6 +3,8 @@ package io.fana.cruel.domain.order.domain
 import io.fana.cruel.core.type.DelayStatus
 import io.fana.cruel.core.type.OrderStatus
 import io.fana.cruel.domain.base.BaseEntity
+import io.fana.cruel.domain.order.OrderInterestRate
+import io.fana.cruel.domain.order.OrderTerm
 import io.fana.cruel.domain.order.exception.InvalidOrderStatusException
 import io.fana.cruel.domain.user.domain.User
 import org.springframework.data.annotation.CreatedDate
@@ -43,13 +45,19 @@ class Order(
     @Column(name = "amount", nullable = false)
     val amount: Int,
 
-    @Column(name = "interest_rate", nullable = false, precision = 6, scale = 3)
-    val interestRate: BigDecimal,
+    interestRate: OrderInterestRate,
 
-    term: Int,
+    orderTerm: OrderTerm,
+
+    @Column(name = "content", nullable = true, columnDefinition = "TEXT")
+    val content: String? = null,
 ) : BaseEntity() {
+    @Column(name = "interest_rate", nullable = false, precision = 6, scale = 3)
+    var interestRate: BigDecimal = interestRate.rate
+        private set
+
     @Column(name = "term", nullable = false)
-    var term: Int = term
+    var term: Int = orderTerm.term
         private set
 
     @Enumerated(EnumType.STRING)

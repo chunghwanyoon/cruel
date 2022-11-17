@@ -1,6 +1,7 @@
 package io.fana.cruel.domain.order.application
 
 import com.appmattus.kotlinfixture.kotlinFixture
+import io.fana.cruel.domain.order.OrderTerm
 import io.fana.cruel.domain.order.domain.Order
 import io.fana.cruel.domain.order.domain.OrderRepository
 import io.fana.cruel.domain.order.exception.OrderNotFoundException
@@ -21,7 +22,15 @@ internal class GetOrderServiceTest : BehaviorSpec({
     )
     val fixture = kotlinFixture()
     val userFixture = fixture<User>()
-    val orderFixture = fixture<Order>()
+
+    /**
+     * TODO:
+     * fixture를 만드는 헬퍼 매서드로 분리
+     * javafaker랑 같이 사용하는 방식도 나쁘지 않을 듯 한데..
+     */
+    val orderFixture = fixture<Order> {
+        factory<OrderTerm> { OrderTerm(3) }
+    }
 
     given("유저가 주어졌을 때") {
         every { orderRepository.findAllByUserId(userFixture.id) } returns listOf()

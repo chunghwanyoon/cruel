@@ -2,6 +2,7 @@ package io.fana.cruel.domain.order.domain
 
 import com.appmattus.kotlinfixture.kotlinFixture
 import io.fana.cruel.core.type.OrderStatus
+import io.fana.cruel.domain.order.OrderTerm
 import io.fana.cruel.domain.order.exception.InvalidOrderStatusException
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.IsolationMode
@@ -12,7 +13,9 @@ internal class OrderStatusTest : BehaviorSpec({
     isolationMode = IsolationMode.InstancePerLeaf
 
     val fixture = kotlinFixture()
-    val orderFixture = fixture<Order>()
+    val orderFixture = fixture<Order> {
+        factory<OrderTerm> { OrderTerm(3) }
+    }
 
     given("주문이 주어졌을 때") {
         `when`("주문을 생성하면") {
