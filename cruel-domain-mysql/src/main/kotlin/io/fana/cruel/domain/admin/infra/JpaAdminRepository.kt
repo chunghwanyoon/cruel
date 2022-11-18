@@ -7,5 +7,5 @@ import org.springframework.data.jpa.repository.JpaRepository
 interface JpaAdminRepository : AdminRepository, JpaRepository<Admin, Long> {
     override fun findAdminByUserId(id: Long): Admin?
 
-    override fun save(): Admin
+    override fun save(admin: Admin): Admin
 }
