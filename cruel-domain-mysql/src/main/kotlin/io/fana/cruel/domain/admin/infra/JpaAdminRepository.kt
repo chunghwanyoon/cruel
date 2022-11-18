@@ -5,7 +5,7 @@ import io.fana.cruel.domain.admin.domain.AdminRepository
 import org.springframework.data.jpa.repository.JpaRepository
 
 interface JpaAdminRepository : AdminRepository, JpaRepository<Admin, Long> {
-    override fun findAdminById(id: Long): Admin?
+    override fun findAdminByUserId(id: Long): Admin?
 
     override fun save(): Admin
 }

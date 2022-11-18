@@ -12,6 +12,7 @@ enum class ErrorCode(
 
     /* 어드민 */
     ADMIN_NOT_FOUND(ErrorGroup.ADMIN, "001", "ERR_ADMIN_NOT_FOUND"),
+    UNAUTHORIZED_ADMIN(ErrorGroup.ADMIN, "002", "ERR_UNAUTHORIZED_ADMIN"),
 
     /* 인증 */
     INVALID_JWT_TOKEN(ErrorGroup.AUTH, "001", "ERR_INVALID_JWT_TOKEN"),

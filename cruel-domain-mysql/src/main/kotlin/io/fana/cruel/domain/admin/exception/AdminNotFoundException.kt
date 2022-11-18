@@ -8,6 +8,6 @@ class AdminNotFoundException(
     cause: Throwable? = null,
 ) : NotFoundException(ErrorCode.ADMIN_NOT_FOUND, message, cause) {
     companion object {
-        fun ofId(adminId: Long) = AdminNotFoundException("Admin not found with id: $adminId")
+        fun ofUserId(userId: Long) = AdminNotFoundException("Admin not found with userId: $userId")
     }
 }

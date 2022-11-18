@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional
 class GetAdminService(
     private val adminRepository: AdminRepository,
 ) {
-    fun getAdminById(adminId: Long): Admin {
-        return adminRepository.findAdminById(adminId) ?: throw AdminNotFoundException.ofId(adminId)
+    fun getAdminByUserId(userId: Long): Admin {
+        return adminRepository.findAdminByUserId(userId) ?: throw AdminNotFoundException.ofUserId(userId)
     }
 }

@@ -14,6 +14,9 @@ class Admin(
     @Column(name = "name", nullable = false)
     val name: String,
 
+    @Column(name = "user_id", nullable = false)
+    val userId: Long,
+
     id: Long = 0L,
 ) : BaseEntity(id) {
     @CreatedDate

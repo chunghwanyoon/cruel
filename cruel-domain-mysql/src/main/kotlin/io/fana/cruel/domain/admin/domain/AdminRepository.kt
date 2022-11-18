@@ -4,7 +4,7 @@ import org.springframework.stereotype.Repository
 
 @Repository
 interface AdminRepository {
-    fun findAdminById(id: Long): Admin?
+    fun findAdminByUserId(userId: Long): Admin?
 
     fun save(): Admin
 }
