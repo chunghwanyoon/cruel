@@ -25,10 +25,10 @@ internal class GetAdminServiceTest : BehaviorSpec({
 
     given("어드민이 주어졌을 때") {
         `when`("어드민을 조회하면") {
-            every { adminRepository.findAdminById(adminId) } returns adminFixture
+            every { adminRepository.findAdminByUserId(adminId) } returns adminFixture
 
             then("어드민이 조회된다") {
-                val admin = getAdminService.getAdminById(adminId)
+                val admin = getAdminService.getAdminByUserId(adminId)
 
                 admin.id shouldBe adminId
                 admin.deletedAt shouldBe null
@@ -36,11 +36,11 @@ internal class GetAdminServiceTest : BehaviorSpec({
         }
 
         `when`("어드민이 존재하지 않으면") {
-            every { adminRepository.findAdminById(adminId) } returns null
+            every { adminRepository.findAdminByUserId(adminId) } returns null
 
             then("예외가 발생한다") {
                 shouldThrow<AdminNotFoundException> {
-                    getAdminService.getAdminById(adminId)
+                    getAdminService.getAdminByUserId(adminId)
                 }
             }
         }
