@@ -6,5 +6,6 @@ enum class ErrorGroup(
     COMMON("01"),
     AUTH("02"),
     USER("03"),
-    ORDER("04");
+    ORDER("04"),
+    ADMIN("05");
 }
