@@ -17,7 +17,7 @@ internal class OrderTermTest : BehaviorSpec({
                 orderTerm.term shouldBe 3
             }
         }
-        
+
         `when`("주문 기간이 최소 주문 기간보다 작으면") {
             then("예외가 발생한다") {
                 shouldThrow<InvalidOrderTermException> {
