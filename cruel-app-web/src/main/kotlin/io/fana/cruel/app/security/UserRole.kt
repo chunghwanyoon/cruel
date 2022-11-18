@@ -4,6 +4,7 @@ enum class UserRole(
     val role: String,
 ) {
     INTERNAL("ROLE_INTERNAL"),
+    ADMIN("ROLE_ADMIN"),
     COMMON("ROLE_COMMON");
 
     companion object {
