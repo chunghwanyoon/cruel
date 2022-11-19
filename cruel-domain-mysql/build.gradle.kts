@@ -23,6 +23,7 @@ dependencies {
 
     implementation(Dependencies.Data.jpa)
     implementation(Dependencies.Data.jdsl)
+    implementation(Dependencies.Data.envers)
 
     runtimeOnly(Dependencies.Data.h2)
     runtimeOnly(Dependencies.Data.mysqlConnector)

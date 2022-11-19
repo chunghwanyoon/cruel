@@ -1,4 +1,6 @@
 spring:
+    config:
+        import: classpath:cruel-db.yml
     application:
         name: cruel-app-web
     profiles:

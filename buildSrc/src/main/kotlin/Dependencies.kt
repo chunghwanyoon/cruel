@@ -35,6 +35,7 @@ object Dependencies {
         const val redis = "org.springframework.boot:spring-boot-starter-data-redis"
         const val h2 = "com.h2database:h2"
         const val mysqlConnector = "mysql:mysql-connector-java"
+        const val envers = "org.springframework.data:spring-data-envers"
     }
 
     object Test {

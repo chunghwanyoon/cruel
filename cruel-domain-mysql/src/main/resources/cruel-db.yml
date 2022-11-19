@@ -1,0 +1,56 @@
+spring:
+    config:
+        activate:
+            on-profile: common
+    datasource:
+        hikari:
+            pool-name: cruel-db-pool
+            maximum-pool-size: 10
+            transaction-isolation: TRANSACTION_READ_COMMITTED
+    jpa:
+        generate-ddl: false
+        open-in-view: false
+        properties:
+            org:
+                hibernate:
+                    envers:
+                        audit_table_suffix: _audits
+                        revision_field_name: rev_id
+                        # envers delete 기록 삭제는 레코드가 null로 표기되지만,
+                        # delete 직전 해당 레코드의 필드를 남길 때 사용
+                        store_data_at_delete: true
+            hibernate:
+                format_sql: false
+                show_sql: false
+                use_sql_comments: false
+                default_batch_fetch_size: 1000
+        database-platform: org.hibernate.dialect.MySQL8Dialect
+---
+spring:
+    config:
+        activate:
+            on-profile: local
+    datasource:
+        url: jdbc:mysql://localhost:3309/cruel
+        username: root
+        password: root
+    jpa:
+        generate-ddl: true
+        hibernate:
+            ddl-auto: update
+---
+spring:
+    config:
+        activate:
+            on-profile: develop
+    jpa:
+        hibernate:
+            ddl-auto: none
+---
+spring:
+    config:
+        activate:
+            on-profile: staging
+    jpa:
+        hibernate:
+            ddl-auto: none
