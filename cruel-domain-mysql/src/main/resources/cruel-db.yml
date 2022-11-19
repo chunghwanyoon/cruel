@@ -30,7 +30,7 @@ spring:
         activate:
             on-profile: local
     datasource:
-        url: jdbc:mysql://localhost:3306/platform
+        url: jdbc:mysql://localhost:3309/cruel
         username: root
         password: root
     jpa:
