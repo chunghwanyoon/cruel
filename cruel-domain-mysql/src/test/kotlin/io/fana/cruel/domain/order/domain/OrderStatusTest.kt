@@ -48,6 +48,31 @@ internal class OrderStatusTest : BehaviorSpec({
                 }
             }
         }
+        `when`("주문을 거절하면") {
+            then("주문이 거절된다") {
+                orderFixture.rejected()
+                orderFixture.status shouldBe OrderStatus.REJECTED
+            }
+            given("주문이 CREATED가 아닐 때") {
+                `when`("활성화된 주문의 거절을 시도하면") {
+                    val activatedOrder = orderFixture.activated()
+                    then("예외가 발생한다") {
+                        shouldThrow<InvalidOrderStatusException> {
+                            activatedOrder.rejected()
+                        }
+                    }
+                }
+                `when`("완료된 주문의 거절을 시도하면") {
+                    val activatedOrder = orderFixture.activated()
+                    val completedOrder = activatedOrder.completed()
+                    then("예외가 발생한다") {
+                        shouldThrow<InvalidOrderStatusException> {
+                            completedOrder.rejected()
+                        }
+                    }
+                }
+            }
+        }
         `when`("주문을 활성화하면") {
             then("주문이 활성화된다") {
                 orderFixture.activated()

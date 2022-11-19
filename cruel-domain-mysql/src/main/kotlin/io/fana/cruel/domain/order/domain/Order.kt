@@ -7,6 +7,8 @@ import io.fana.cruel.domain.order.OrderInterestRate
 import io.fana.cruel.domain.order.OrderTerm
 import io.fana.cruel.domain.order.exception.InvalidOrderStatusException
 import io.fana.cruel.domain.user.domain.User
+import org.hibernate.envers.Audited
+import org.hibernate.envers.NotAudited
 import org.springframework.data.annotation.CreatedDate
 import org.springframework.data.annotation.LastModifiedDate
 import java.math.BigDecimal
@@ -33,6 +35,7 @@ import javax.persistence.Table
     ]
 )
 @Entity
+@Audited
 class Order(
     @ManyToOne
     @JoinColumn(
@@ -40,6 +43,7 @@ class Order(
         foreignKey = ForeignKey(ConstraintMode.NO_CONSTRAINT),
         nullable = false
     )
+    @NotAudited
     val user: User,
 
     @Column(name = "amount", nullable = false)
@@ -52,6 +56,9 @@ class Order(
     @Column(name = "content", nullable = true, columnDefinition = "TEXT")
     val content: String? = null,
 ) : BaseEntity() {
+    @Column(name = "admin_id", nullable = true)
+    var adminId: Long? = null
+
     @Column(name = "interest_rate", nullable = false, precision = 6, scale = 3)
     var interestRate: BigDecimal = interestRate.rate
         private set
@@ -89,6 +96,12 @@ class Order(
     fun activated(): Order {
         requireOrderStatus(OrderStatus.CREATED, OrderStatus.ACTIVATED)
         status = OrderStatus.ACTIVATED
+        return this
+    }
+
+    fun rejected(): Order {
+        requireOrderStatus(OrderStatus.CREATED, OrderStatus.REJECTED)
+        status = OrderStatus.REJECTED
         return this
     }
 
