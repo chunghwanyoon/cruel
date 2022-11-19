@@ -41,3 +41,6 @@ out/
 
 ### Kotest TEST ###
 .jqwik-database
+
+### MySQL Docker ###
+/mysqldata
