@@ -11,6 +11,7 @@ data class OrderResponse(
     val interestRate: BigDecimal,
     val term: Int,
     val status: OrderStatus,
+    val content: String? = null,
     val delayStatus: DelayStatus,
 ) {
     companion object {
@@ -20,6 +21,7 @@ data class OrderResponse(
             interestRate = order.interestRate,
             term = order.term,
             status = order.status,
+            content = order.content,
             delayStatus = order.delayStatus,
         )
 

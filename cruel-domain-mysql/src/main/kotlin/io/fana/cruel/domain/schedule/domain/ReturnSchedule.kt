@@ -14,7 +14,7 @@ import javax.persistence.Table
     indexes = [
         Index(name = "idx_return_schedules_order_id", columnList = "order_id"),
         Index(name = "idx_return_schedules_principal", columnList = "principal"),
-        Index(name = "idx_return_schedules_interest_amount", columnList = "interest_amount"),
+        Index(name = "idx_return_schedules_interest", columnList = "interest"),
         Index(name = "idx_return_schedules_scheduled_at", columnList = "scheduled_at"),
         Index(name = "idx_return_schedules_is_returned", columnList = "is_returned"),
     ]
@@ -27,11 +27,17 @@ class ReturnSchedule(
     @Column(name = "principal", nullable = false)
     val principal: Int,
 
-    @Column(name = "interest_amount", nullable = false)
-    val interestAmount: Int,
+    @Column(name = "interest", nullable = false)
+    val interest: Int,
+
+    @Column(name = "seq_id", nullable = false)
+    val seqId: Int,
 
     scheduledAt: LocalDateTime,
 ) : BaseEntity() {
+    @Column(name = "total_amount", nullable = false)
+    val totalAmount: Int = principal + interest
+
     @Column(name = "is_returned", nullable = false)
     val isReturned: Boolean = false
 

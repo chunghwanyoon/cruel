@@ -4,6 +4,6 @@ enum class OrderStatus {
     CREATED,
     CANCELED,
     REJECTED,
-    ACTIVATED,
+    APPROVED,
     COMPLETED;
 }
