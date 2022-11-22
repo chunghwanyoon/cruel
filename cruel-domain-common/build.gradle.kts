@@ -19,12 +19,6 @@ plugins {
 
 dependencies {
     implementation(project(Dependencies.Cruel.core))
-
     implementation(Dependencies.Data.jpa)
-    implementation(Dependencies.Data.jdsl)
-
-    runtimeOnly(Dependencies.Data.h2)
-    runtimeOnly(Dependencies.Data.mysqlConnector)
-
     testImplementation(Dependencies.Spring.starterTest)
 }
