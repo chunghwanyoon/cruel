@@ -15,7 +15,7 @@ internal class CalculateRepaymentServiceTest : BehaviorSpec({
     given("총 원금, 연 이자율, 대출 기간이 주어졌을 때") {
         `when`("상환 계획을 계산하면") {
             then("상환 계획이 반환된다") {
-                val results = calculateRepaymentService.calculateRepayment(
+                val results = calculateRepaymentService.createRepaymentSchedules(
                     totalPrincipal = principals.random(),
                     yearlyInterestRate = interestRates.random(),
                     term = terms.random(),
