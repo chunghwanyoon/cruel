@@ -1,9 +1,10 @@
 package io.fana.cruel.core.type
 
-enum class OrderStatus {
+enum class OrderStatusSearchFilter {
+    ALL,
     CREATED,
     CANCELED,
     REJECTED,
-    APPROVED,
+    ACTIVATED,
     COMPLETED;
 }

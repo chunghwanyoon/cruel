@@ -93,9 +93,9 @@ class Order(
         return this
     }
 
-    fun activated(): Order {
-        requireOrderStatus(OrderStatus.CREATED, OrderStatus.ACTIVATED)
-        status = OrderStatus.ACTIVATED
+    fun approved(): Order {
+        requireOrderStatus(OrderStatus.CREATED, OrderStatus.APPROVED)
+        status = OrderStatus.APPROVED
         return this
     }
 
@@ -106,7 +106,7 @@ class Order(
     }
 
     fun completed(): Order {
-        requireOrderStatus(OrderStatus.ACTIVATED, OrderStatus.COMPLETED)
+        requireOrderStatus(OrderStatus.APPROVED, OrderStatus.COMPLETED)
         status = OrderStatus.COMPLETED
         return this
     }
