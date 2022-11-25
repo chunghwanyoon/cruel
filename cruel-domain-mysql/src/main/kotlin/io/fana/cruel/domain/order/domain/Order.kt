@@ -2,6 +2,7 @@ package io.fana.cruel.domain.order.domain
 
 import io.fana.cruel.core.type.DelayStatus
 import io.fana.cruel.core.type.OrderStatus
+import io.fana.cruel.domain.admin.domain.Admin
 import io.fana.cruel.domain.base.BaseEntity
 import io.fana.cruel.domain.order.OrderInterestRate
 import io.fana.cruel.domain.order.OrderTerm
@@ -59,6 +60,9 @@ class Order(
     @Column(name = "admin_id", nullable = true)
     var adminId: Long? = null
 
+    @Column(name = "memo", nullable = true)
+    var memo: String? = null
+
     @Column(name = "interest_rate", nullable = false, precision = 6, scale = 3)
     var interestRate: BigDecimal = interestRate.rate
         private set
@@ -90,25 +94,36 @@ class Order(
     fun canceled(): Order {
         requireOrderStatus(OrderStatus.CREATED, OrderStatus.CANCELED)
         status = OrderStatus.CANCELED
+        this.adminId = Admin.SYSTEM_ADMIN_ID
         return this
     }
 
-    fun approved(): Order {
+    fun approved(adminId: Long, memo: String?): Order {
         requireOrderStatus(OrderStatus.CREATED, OrderStatus.APPROVED)
         status = OrderStatus.APPROVED
+        updateAdminInfo(adminId, memo)
         return this
     }
 
-    fun rejected(): Order {
+    fun rejected(adminId: Long, memo: String?): Order {
         requireOrderStatus(OrderStatus.CREATED, OrderStatus.REJECTED)
         status = OrderStatus.REJECTED
+        updateAdminInfo(adminId, memo)
         return this
     }
 
     fun completed(): Order {
         requireOrderStatus(OrderStatus.APPROVED, OrderStatus.COMPLETED)
         status = OrderStatus.COMPLETED
+        this.adminId = Admin.SYSTEM_ADMIN_ID
         return this
+    }
+
+    private fun updateAdminInfo(adminId: Long, memo: String? = null) {
+        this.adminId = adminId
+        if (memo != null) {
+            this.memo = memo
+        }
     }
 
     private fun requireOrderStatus(required: OrderStatus, targetStatus: OrderStatus) {

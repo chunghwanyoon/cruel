@@ -32,4 +32,8 @@ class Admin(
     @Column(name = "deleted_at")
     var deletedAt: LocalDateTime? = null
         private set
+
+    companion object {
+        const val SYSTEM_ADMIN_ID: Long = -1
+    }
 }

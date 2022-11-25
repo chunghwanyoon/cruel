@@ -16,6 +16,8 @@ internal class OrderStatusTest : BehaviorSpec({
     val orderFixture = fixture<Order> {
         factory<OrderTerm> { OrderTerm(3) }
     }
+    val adminId = 1L
+    val memo = "MEMO"
 
     given("주문이 주어졌을 때") {
         `when`("주문을 생성하면") {
@@ -30,7 +32,7 @@ internal class OrderStatusTest : BehaviorSpec({
             }
             given("주문이 CREATED가 아닐 때") {
                 `when`("활성화된 주문의 취소를 시도하면") {
-                    val activatedOrder = orderFixture.approved()
+                    val activatedOrder = orderFixture.approved(adminId, memo)
                     then("예외가 발생한다") {
                         shouldThrow<InvalidOrderStatusException> {
                             activatedOrder.canceled()
@@ -38,7 +40,7 @@ internal class OrderStatusTest : BehaviorSpec({
                     }
                 }
                 `when`("완료된 주문의 취소를 시도하면") {
-                    val activatedOrder = orderFixture.approved()
+                    val activatedOrder = orderFixture.approved(adminId, memo)
                     val completedOrder = activatedOrder.completed()
                     then("예외가 발생한다") {
                         shouldThrow<InvalidOrderStatusException> {
@@ -50,24 +52,24 @@ internal class OrderStatusTest : BehaviorSpec({
         }
         `when`("주문을 거절하면") {
             then("주문이 거절된다") {
-                orderFixture.rejected()
+                orderFixture.rejected(adminId, memo)
                 orderFixture.status shouldBe OrderStatus.REJECTED
             }
             given("주문이 CREATED가 아닐 때") {
                 `when`("활성화된 주문의 거절을 시도하면") {
-                    val activatedOrder = orderFixture.approved()
+                    val activatedOrder = orderFixture.approved(adminId, memo)
                     then("예외가 발생한다") {
                         shouldThrow<InvalidOrderStatusException> {
-                            activatedOrder.rejected()
+                            activatedOrder.rejected(adminId, memo)
                         }
                     }
                 }
                 `when`("완료된 주문의 거절을 시도하면") {
-                    val activatedOrder = orderFixture.approved()
+                    val activatedOrder = orderFixture.approved(adminId, memo)
                     val completedOrder = activatedOrder.completed()
                     then("예외가 발생한다") {
                         shouldThrow<InvalidOrderStatusException> {
-                            completedOrder.rejected()
+                            completedOrder.rejected(adminId, memo)
                         }
                     }
                 }
@@ -75,7 +77,7 @@ internal class OrderStatusTest : BehaviorSpec({
         }
         `when`("주문을 활성화하면") {
             then("주문이 활성화된다") {
-                orderFixture.approved()
+                orderFixture.approved(adminId, memo)
                 orderFixture.status shouldBe OrderStatus.APPROVED
             }
             given("주문이 CREATED가 아닐 때") {
@@ -83,23 +85,23 @@ internal class OrderStatusTest : BehaviorSpec({
                     val canceledOrder = orderFixture.canceled()
                     then("예외가 발생한다") {
                         shouldThrow<InvalidOrderStatusException> {
-                            canceledOrder.approved()
+                            canceledOrder.approved(adminId, memo)
                         }
                     }
                 }
                 `when`("완료된 주문의 활성화를 시도하면") {
-                    val activatedOrder = orderFixture.approved()
+                    val activatedOrder = orderFixture.approved(adminId, memo)
                     val completedOrder = activatedOrder.completed()
                     then("예외가 발생한다") {
                         shouldThrow<InvalidOrderStatusException> {
-                            completedOrder.approved()
+                            completedOrder.approved(adminId, memo)
                         }
                     }
                 }
             }
         }
         `when`("주문을 완료하면") {
-            val activatedOrder = orderFixture.approved()
+            val activatedOrder = orderFixture.approved(adminId, memo)
             then("주문이 완료된다") {
                 println(activatedOrder.status)
                 activatedOrder.completed()

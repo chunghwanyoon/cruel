@@ -29,6 +29,9 @@ internal class UpdateOrderServiceTest : BehaviorSpec({
     val returnScheduleFixtures = fixture<List<ReturnSchedule>> {
         property(ReturnSchedule::orderId) { orderFixture.id }
     }
+    val request = fixture<AdminOrderRequest> {
+        property(AdminOrderRequest::orderId) { orderFixture.id }
+    }
 
     given("주문이 주어졌을 때") {
         every { getOrderService.getOrderById(orderFixture.id) } returns orderFixture
@@ -36,7 +39,7 @@ internal class UpdateOrderServiceTest : BehaviorSpec({
 
         `when`("주문을 승인 처리하면") {
             then("주문이 승인되고 상환 스케쥴이 생성된다") {
-                val order = updateOrderService.approveOrder(orderFixture.id, now)
+                val order = updateOrderService.approveOrder(request, now)
 
                 order.status shouldBe OrderStatus.APPROVED
             }

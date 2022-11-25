@@ -10,9 +10,9 @@ class DeleteOrderService(
     private val getOrderService: GetOrderService,
     private val deleteReturnScheduleService: DeleteReturnScheduleService,
 ) {
-    fun rejectOrder(orderId: Long) {
-        val order = getOrderService.getOrderById(orderId)
-        order.rejected()
+    fun rejectOrder(request: AdminOrderRequest) {
+        val order = getOrderService.getOrderById(request.orderId)
+        order.rejected(request.adminId, request.memo)
         deleteReturnScheduleService.deleteReturnSchedulesByOrderId(order.id)
     }
 }

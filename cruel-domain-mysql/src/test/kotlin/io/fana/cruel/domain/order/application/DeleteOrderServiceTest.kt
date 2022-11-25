@@ -22,6 +22,9 @@ internal class DeleteOrderServiceTest : BehaviorSpec({
     val orderFixture = fixture<Order> {
         factory<OrderTerm> { OrderTerm(3) }
     }
+    val request = fixture<AdminOrderRequest> {
+        property(AdminOrderRequest::orderId) { orderFixture.id }
+    }
 
     given("주문이 주어졌을 때") {
         every { getOrderService.getOrderById(orderFixture.id) } returns orderFixture
@@ -30,7 +33,7 @@ internal class DeleteOrderServiceTest : BehaviorSpec({
         `when`("주문을 거절하면") {
             then("주문이 거절되고, 상환 스케쥴이 삭제된다") {
                 shouldNotThrowAny {
-                    deleteOrderService.rejectOrder(orderFixture.id)
+                    deleteOrderService.rejectOrder(request)
                 }
             }
         }

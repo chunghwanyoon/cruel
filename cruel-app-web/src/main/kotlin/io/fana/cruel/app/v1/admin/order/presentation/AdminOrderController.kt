@@ -2,18 +2,17 @@ package io.fana.cruel.app.v1.admin.order.presentation
 
 import io.fana.cruel.core.type.DelayStatusSearchFilter
 import io.fana.cruel.core.type.OrderStatusSearchFilter
+import io.fana.cruel.domain.order.application.AdminOrderRequest
 import io.fana.cruel.domain.order.application.DeleteOrderService
 import io.fana.cruel.domain.order.application.GetOrderService
 import io.fana.cruel.domain.order.application.UpdateOrderService
 import io.swagger.v3.oas.annotations.Operation
-import io.swagger.v3.oas.annotations.Parameter
-import io.swagger.v3.oas.annotations.enums.ParameterIn
 import io.swagger.v3.oas.annotations.responses.ApiResponse
 import io.swagger.v3.oas.annotations.tags.Tag
 import org.springframework.web.bind.annotation.DeleteMapping
 import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
+import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
@@ -46,20 +45,19 @@ class AdminOrderController(
         )
     }
 
-    @PostMapping("/{orderId}/approve")
+    @PostMapping("/approve")
     @Operation(summary = "approveOrder", description = "어드민 주문 승인")
     @ApiResponse(description = "요청 성공", responseCode = "201")
     fun approveOrder(
-        @Parameter(name = "orderId", `in` = ParameterIn.PATH, description = "주문 ID")
-        @PathVariable("orderId") orderId: Long,
+        @RequestBody request: AdminOrderRequest,
     ): AdminOrderResponse {
-        return AdminOrderResponse.of(updateOrderService.approveOrder(orderId, LocalDateTime.now()))
+        return AdminOrderResponse.of(updateOrderService.approveOrder(request, LocalDateTime.now()))
     }
 
-    @DeleteMapping("/{orderId}")
+    @DeleteMapping("/reject")
     @Operation(summary = "rejectOrder", description = "어드민 주문 거절")
     @ApiResponse(description = "요청 성공", responseCode = "204")
     fun rejectOrder(
-        @PathVariable("orderId") orderId: Long,
-    ) = deleteOrderService.rejectOrder(orderId)
+        @RequestBody request: AdminOrderRequest,
+    ) = deleteOrderService.rejectOrder(request)
 }

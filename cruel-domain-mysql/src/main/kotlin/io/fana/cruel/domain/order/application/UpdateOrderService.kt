@@ -12,9 +12,9 @@ class UpdateOrderService(
     private val getOrderService: GetOrderService,
     private val createReturnScheduleService: CreateReturnScheduleService,
 ) {
-    fun approveOrder(orderId: Long, date: LocalDateTime): Order {
-        val order = getOrderService.getOrderById(orderId)
+    fun approveOrder(request: AdminOrderRequest, date: LocalDateTime): Order {
+        val order = getOrderService.getOrderById(request.orderId)
         createReturnScheduleService.createReturnSchedules(order, date)
-        return order.approved()
+        return order.approved(request.adminId, request.memo)
     }
 }
