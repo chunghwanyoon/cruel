@@ -39,7 +39,7 @@ class RepaymentController(
     fun getSummarizeRepaymentInfo(
         @Parameter(hidden = true)
         loginUser: LoginUser,
-    ): SummarizedRepaymentInformation {
+    ): List<SummarizedRepaymentInformation> {
         return getReturnScheduleService.getSummarizedReturnInformation(loginUser.id)
     }
 

@@ -20,7 +20,7 @@ class GetReturnScheduleService(
         return returnScheduleRepository.getReturnScheduleById(scheduleId)
     }
 
-    fun getSummarizedReturnInformation(userId: Long): SummarizedRepaymentInformation {
+    fun getSummarizedReturnInformation(userId: Long): List<SummarizedRepaymentInformation> {
         val user = getUserService.getUserById(userId)
         return returnScheduleRepository.getSummarizedReturnInformation(user.id)
     }

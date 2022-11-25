@@ -9,7 +9,7 @@ interface ReturnScheduleRepository {
 
     fun getReturnScheduleById(scheduleId: Long): ReturnSchedule
 
-    fun getSummarizedReturnInformation(userId: Long): SummarizedRepaymentInformation
+    fun getSummarizedReturnInformation(userId: Long): List<SummarizedRepaymentInformation>
 
     fun save(returnSchedule: ReturnSchedule): ReturnSchedule
 }

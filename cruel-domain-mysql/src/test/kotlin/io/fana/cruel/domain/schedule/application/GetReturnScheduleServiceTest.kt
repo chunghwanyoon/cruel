@@ -31,7 +31,7 @@ internal class GetReturnScheduleServiceTest : BehaviorSpec({
     val returnScheduleFixtures = fixture<List<ReturnSchedule>> {
         property(ReturnSchedule::orderId) { orderFixture.id }
     }
-    val summarizedInformation = fixture<SummarizedRepaymentInformation>()
+    val summarizedInformation = fixture<List<SummarizedRepaymentInformation>>()
 
     given("주문이 주어졌을 때") {
         every { returnScheduleRepository.getAllByOrderId(orderFixture.id) } returns returnScheduleFixtures

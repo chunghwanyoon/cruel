@@ -27,7 +27,7 @@ interface JpaReturnScheduleRepository : ReturnScheduleRepository, JpaRepository<
         """,
         nativeQuery = true
     )
-    override fun getSummarizedReturnInformation(userId: Long): SummarizedRepaymentInformation
+    override fun getSummarizedReturnInformation(userId: Long): List<SummarizedRepaymentInformation>
 
     override fun save(returnSchedule: ReturnSchedule): ReturnSchedule
 }
