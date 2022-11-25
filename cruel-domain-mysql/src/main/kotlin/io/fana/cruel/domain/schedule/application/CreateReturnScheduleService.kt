@@ -1,6 +1,7 @@
 package io.fana.cruel.domain.schedule.application
 
 import io.fana.cruel.domain.order.domain.Order
+import io.fana.cruel.domain.repayment.RepaymentSchedule
 import io.fana.cruel.domain.repayment.application.CalculateRepaymentService
 import io.fana.cruel.domain.schedule.domain.ReturnSchedule
 import io.fana.cruel.domain.schedule.infra.JpaReturnScheduleRepository
@@ -20,13 +21,21 @@ class CreateReturnScheduleService(
             order.interestRate.toDouble(),
             order.term
         )
+        return createReturnSchedulesByRepaymentSchedules(order.id, repaymentSchedules, date)
+    }
+
+    private fun createReturnSchedulesByRepaymentSchedules(
+        orderId: Long,
+        repaymentSchedules: List<RepaymentSchedule>,
+        date: LocalDateTime,
+    ): List<ReturnSchedule> {
         val returnSchedules = repaymentSchedules.map {
             ReturnSchedule(
-                orderId = order.id,
+                orderId = orderId,
                 principal = it.principal,
                 interest = it.interest,
                 seqId = it.seqId,
-                scheduledAt = date.plusMonths(it.seqId.toLong())
+                scheduledAt = date.plusMonths(it.seqId.toLong()),
             )
         }
         return returnScheduleRepository.saveAll(returnSchedules)

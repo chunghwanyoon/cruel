@@ -7,5 +7,7 @@ import org.springframework.stereotype.Repository
 
 @Repository
 interface JpaReturnScheduleRepository : ReturnScheduleRepository, JpaRepository<ReturnSchedule, Long> {
+    override fun getAllByOrderId(orderId: Long): List<ReturnSchedule>
+
     override fun save(returnSchedule: ReturnSchedule): ReturnSchedule
 }
