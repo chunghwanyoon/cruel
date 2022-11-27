@@ -13,5 +13,6 @@ services:
             - ./dbdump/db:/docker-entrypoint-initdb.d
             - ./mysqldata:/var/lib/mysql:rw,delegated
         platform: linux/x86_64
-        networks:
-            - cruel
+networks:
+    cruel:
+        driver: bridge
