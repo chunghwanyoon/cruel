@@ -11,5 +11,7 @@ interface ReturnScheduleRepository {
 
     fun getSummarizedReturnInformation(userId: Long): List<SummarizedRepaymentInformation>
 
+    fun getPreviousNotRepaidSchedules(orderId: Long, returnScheduleId: Long): List<ReturnSchedule>
+
     fun save(returnSchedule: ReturnSchedule): ReturnSchedule
 }

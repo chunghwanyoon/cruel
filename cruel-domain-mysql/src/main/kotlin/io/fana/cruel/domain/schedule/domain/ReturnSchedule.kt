@@ -58,14 +58,6 @@ class ReturnSchedule(
         private set
 
     fun repay() {
-        /**
-         * TODO:
-         * 상환 처리에 대한 도메인 규칙 필요
-         * 예시)
-         * 1. 같은 주문에 속해있는 이전 상환스케쥴이 상환되지 않았다면 상환 불가하다든지
-         * 2. 상환기일 이전 며칠내에만 상환 처리가 가능하다든지(과도한 조기상환 금지)
-         * 등등..
-         */
         this.isReturned = true
         returnedAt = LocalDateTime.now()
     }

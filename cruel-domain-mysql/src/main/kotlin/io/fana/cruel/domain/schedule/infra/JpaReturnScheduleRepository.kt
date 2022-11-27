@@ -29,5 +29,16 @@ interface JpaReturnScheduleRepository : ReturnScheduleRepository, JpaRepository<
     )
     override fun getSummarizedReturnInformation(userId: Long): List<SummarizedRepaymentInformation>
 
+    @Query(
+        """
+            SELECT rs
+            FROM ReturnSchedule rs
+            WHERE rs.orderId = :orderId
+            AND rs.id < :returnScheduleId
+            AND rs.isReturned = FALSE
+        """
+    )
+    override fun getPreviousNotRepaidSchedules(orderId: Long, returnScheduleId: Long): List<ReturnSchedule>
+
     override fun save(returnSchedule: ReturnSchedule): ReturnSchedule
 }
