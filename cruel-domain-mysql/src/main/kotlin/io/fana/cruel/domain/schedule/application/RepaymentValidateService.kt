@@ -4,7 +4,6 @@ import io.fana.cruel.domain.schedule.domain.ReturnSchedule
 import io.fana.cruel.domain.schedule.domain.ReturnScheduleRepository
 import io.fana.cruel.domain.schedule.exception.RepaymentValidateFailedException
 import org.springframework.stereotype.Service
-import java.time.LocalDateTime
 
 @Service
 class RepaymentValidateService(
@@ -17,7 +16,7 @@ class RepaymentValidateService(
      */
     fun validate(returnSchedule: ReturnSchedule) {
         requirePreviousRepaymentCompleted(returnSchedule)
-        scheduledAtWithInWeeks(returnSchedule.scheduledAt)
+        requireScheduleNotCompleted(returnSchedule)
     }
 
     /**
@@ -36,18 +35,13 @@ class RepaymentValidateService(
     }
 
     /**
-     * 상환하려는 일자가 상환 예정일 7일 내인지 확인한다.
-     * @param scheduledAt 해당 상환 스케쥴의 정해진 상환 기일
+     * 상환하려는 스케쥴이 이미 완료상태인지 확인한다.
+     * @param returnSchedule 상환 스케쥴
      * @throws RepaymentValidateFailedException
      */
-    private fun scheduledAtWithInWeeks(scheduledAt: LocalDateTime) {
-        val now = LocalDateTime.now()
-        if (now.plusDays(REPAYMENT_WITH_IN_POSSIBLE_DAYS) < scheduledAt) {
-            throw RepaymentValidateFailedException("실제 상환 예정일로부터 7일 이내에만 상환처리가 가능합니다.")
+    private fun requireScheduleNotCompleted(returnSchedule: ReturnSchedule) {
+        if (returnSchedule.isReturned) {
+            throw RepaymentValidateFailedException("이미 상환완료된 상환건입니다.")
         }
-    }
-
-    companion object {
-        private const val REPAYMENT_WITH_IN_POSSIBLE_DAYS = 7L
     }
 }
