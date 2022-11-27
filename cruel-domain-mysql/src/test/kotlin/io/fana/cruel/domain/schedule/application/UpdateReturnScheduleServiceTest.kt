@@ -15,8 +15,10 @@ internal class UpdateReturnScheduleServiceTest : BehaviorSpec({
     isolationMode = IsolationMode.InstancePerLeaf
     val fixture = kotlinFixture()
     val getReturnScheduleService = mockk<GetReturnScheduleService>()
+    val repaymentValidateService = mockk<RepaymentValidateService>()
     val updateReturnScheduleService = UpdateReturnScheduleService(
         getReturnScheduleService = getReturnScheduleService,
+        repaymentValidateService = repaymentValidateService,
     )
     val userFixture = fixture<User>()
     val orderFixture = fixture<Order> {
@@ -31,6 +33,7 @@ internal class UpdateReturnScheduleServiceTest : BehaviorSpec({
         every {
             getReturnScheduleService.getReturnScheduleById(returnScheduleFixture.id)
         } returns returnScheduleFixture
+        every { repaymentValidateService.validate(any()) } returns Unit
 
         `when`("상환처리를 하면") {
             then("상환처리가 완료된다") {

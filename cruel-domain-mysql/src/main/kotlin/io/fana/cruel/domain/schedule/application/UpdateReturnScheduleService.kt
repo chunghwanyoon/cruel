@@ -8,10 +8,14 @@ import org.springframework.transaction.annotation.Transactional
 @Service
 class UpdateReturnScheduleService(
     private val getReturnScheduleService: GetReturnScheduleService,
+    private val repaymentValidateService: RepaymentValidateService,
 ) {
     fun repayReturnSchedule(scheduleId: Long): ReturnSchedule {
         val returnSchedule = getReturnScheduleService.getReturnScheduleById(scheduleId)
-        returnSchedule.repay()
+        repaymentValidateService.validate(returnSchedule)
+        executeRepay(returnSchedule)
         return returnSchedule
     }
+
+    private fun executeRepay(returnSchedule: ReturnSchedule) = returnSchedule.repay()
 }

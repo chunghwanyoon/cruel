@@ -30,7 +30,10 @@ enum class ErrorCode(
     /* 주문 */
     INVALID_ORDER_STATUS(ErrorGroup.ORDER, "001", "ERR_INVALID_ORDER_STATUS"),
     ORDER_NOT_FOUND(ErrorGroup.ORDER, "002", "ERR_ORDER_NOT_FOUND"),
-    INVALID_ORDER_TERM(ErrorGroup.ORDER, "003", "ERR_INVALID_ORDER_TERM");
+    INVALID_ORDER_TERM(ErrorGroup.ORDER, "003", "ERR_INVALID_ORDER_TERM"),
+
+    /* 상환 */
+    REPAYMENT_VALIDATE_FAILED(ErrorGroup.REPAYMENT, "001", "ERR_REPAYMENT_VALIDATE_FAILED");
 
     val errorCode: String
         get() = group.prefix + value
