@@ -1,5 +1,5 @@
 object Versions {
-    const val jvmTarget = "18"
+    const val jvmTarget = "17"
 
     const val kotlinPlugin = "1.6.21"
     const val coroutines = "1.6.1"
