@@ -22,6 +22,7 @@ class Product(
     name: String,
     code: String,
     price: Int,
+    imageUrl: String,
 ) : BaseEntity() {
     @Column(name = "name", nullable = false, unique = true)
     var name: String = name
@@ -31,6 +32,9 @@ class Product(
 
     @Column(name = "price", nullable = false)
     var price: Int = price
+
+    @Column(name = "image_url", nullable = false)
+    var imageUrl: String = imageUrl
 
     @Column(name = "is_activated", nullable = false)
     var isActivated: Boolean = true

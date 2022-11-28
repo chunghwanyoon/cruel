@@ -8,5 +8,7 @@ interface ProductRepository {
 
     fun findProductById(productId: Long): Product?
 
+    fun findProductByCode(code: String): Product?
+
     fun save(product: Product): Product
 }

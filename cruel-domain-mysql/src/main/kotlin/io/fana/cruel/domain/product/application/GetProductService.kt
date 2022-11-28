@@ -15,6 +15,8 @@ class GetProductService(
         return productRepository.findAll()
     }
 
+    fun findProductByCode(code: String): Product? = productRepository.findProductByCode(code)
+
     fun getProductById(productId: Long): Product {
         return productRepository.findProductById(productId) ?: throw ProductNotFoundException.ofId(productId)
     }

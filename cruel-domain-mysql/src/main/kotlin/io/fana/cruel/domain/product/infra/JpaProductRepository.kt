@@ -9,5 +9,7 @@ interface JpaProductRepository : ProductRepository, JpaRepository<Product, Long>
 
     override fun findProductById(productId: Long): Product?
 
+    override fun findProductByCode(code: String): Product?
+
     override fun save(product: Product): Product
 }
