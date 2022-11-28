@@ -8,5 +8,6 @@ enum class ErrorGroup(
     USER("03"),
     ORDER("04"),
     ADMIN("05"),
-    REPAYMENT("06");
+    REPAYMENT("06"),
+    PRODUCT("07");
 }
