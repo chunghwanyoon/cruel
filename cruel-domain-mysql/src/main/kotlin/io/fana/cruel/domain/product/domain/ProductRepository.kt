@@ -11,4 +11,6 @@ interface ProductRepository {
     fun findProductByCode(code: String): Product?
 
     fun save(product: Product): Product
+
+    fun deleteProductById(productId: Long)
 }

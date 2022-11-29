@@ -1,6 +1,8 @@
 package io.fana.cruel.domain.product.domain
 
 import io.fana.cruel.domain.base.BaseEntity
+import io.fana.cruel.domain.product.application.UpdateProductRequest
+import org.hibernate.annotations.DynamicUpdate
 import org.springframework.data.annotation.CreatedDate
 import org.springframework.data.annotation.LastModifiedDate
 import java.time.LocalDateTime
@@ -18,6 +20,7 @@ import javax.persistence.Table
     ]
 )
 @Entity
+@DynamicUpdate
 class Product(
     name: String,
     code: String,
@@ -48,4 +51,13 @@ class Product(
     @Column(name = "updated_at", nullable = false)
     var updatedAt: LocalDateTime = LocalDateTime.MIN
         private set
+
+    fun update(request: UpdateProductRequest): Product {
+        name = request.name
+        code = request.code
+        price = request.price
+        imageUrl = request.imageUrl
+        isActivated = request.isActivated
+        return this
+    }
 }

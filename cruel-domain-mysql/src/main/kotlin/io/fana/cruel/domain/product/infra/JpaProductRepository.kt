@@ -12,4 +12,6 @@ interface JpaProductRepository : ProductRepository, JpaRepository<Product, Long>
     override fun findProductByCode(code: String): Product?
 
     override fun save(product: Product): Product
+
+    override fun deleteProductById(productId: Long)
 }
