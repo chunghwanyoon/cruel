@@ -1,11 +1,11 @@
 package io.fana.cruel.domain.repayment.application
 
 import io.fana.cruel.domain.repayment.RepaymentSchedule
-import org.springframework.stereotype.Service
 import kotlin.math.pow
 import kotlin.math.roundToInt
+import org.springframework.stereotype.Component
 
-@Service
+@Component
 class CalculateRepaymentService {
     /**
      * Calculate repayment schedule, assumes no grace period

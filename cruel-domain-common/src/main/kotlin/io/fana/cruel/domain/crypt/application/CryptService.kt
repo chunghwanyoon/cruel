@@ -1,11 +1,11 @@
 package io.fana.cruel.domain.crypt.application
 
-import org.springframework.stereotype.Service
 import java.util.Base64
 import javax.crypto.Mac
 import javax.crypto.spec.SecretKeySpec
+import org.springframework.stereotype.Component
 
-@Service
+@Component
 class CryptService(
     // @Value("#{cruel.secret-key}")
     private val secretKey: String = "ThisIsTempSecretKey",
