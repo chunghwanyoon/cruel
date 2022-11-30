@@ -11,6 +11,8 @@ tasks.getByName<Jar>("jar") {
 plugins {
     id(Plugins.Id.springBoot)
     id(Plugins.Id.springDependencyManagement)
+    id(Plugins.Id.javaLibrary)
+    id(Plugins.Test.javaTestFixtures)
 
     kotlin(Plugins.Module.spring)
     kotlin(Plugins.Module.jpa)

@@ -1,9 +1,9 @@
 package io.fana.cruel.domain.repayment.application
 
 import io.fana.cruel.domain.repayment.RepaymentSchedule
+import org.springframework.stereotype.Component
 import kotlin.math.pow
 import kotlin.math.roundToInt
-import org.springframework.stereotype.Component
 
 @Component
 class CalculateRepaymentService {

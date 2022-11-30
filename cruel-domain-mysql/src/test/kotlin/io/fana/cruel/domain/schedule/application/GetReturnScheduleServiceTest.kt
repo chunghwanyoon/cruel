@@ -1,8 +1,8 @@
 package io.fana.cruel.domain.schedule.application
 
 import com.appmattus.kotlinfixture.kotlinFixture
-import io.fana.cruel.domain.order.OrderTerm
 import io.fana.cruel.domain.order.domain.Order
+import io.fana.cruel.domain.order.domain.OrderTerm
 import io.fana.cruel.domain.schedule.domain.ReturnSchedule
 import io.fana.cruel.domain.schedule.domain.ReturnScheduleRepository
 import io.fana.cruel.domain.user.application.GetUserService

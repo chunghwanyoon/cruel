@@ -3,10 +3,10 @@ package io.fana.cruel.domain.order.application
 import com.appmattus.kotlinfixture.kotlinFixture
 import io.fana.cruel.core.type.DelayStatusSearchFilter
 import io.fana.cruel.core.type.OrderStatusSearchFilter
-import io.fana.cruel.domain.order.OrderTerm
 import io.fana.cruel.domain.order.domain.Order
 import io.fana.cruel.domain.order.domain.OrderQueryRepository
 import io.fana.cruel.domain.order.domain.OrderRepository
+import io.fana.cruel.domain.order.domain.OrderTerm
 import io.fana.cruel.domain.order.exception.OrderNotFoundException
 import io.fana.cruel.domain.user.domain.User
 import io.kotest.assertions.throwables.shouldThrow

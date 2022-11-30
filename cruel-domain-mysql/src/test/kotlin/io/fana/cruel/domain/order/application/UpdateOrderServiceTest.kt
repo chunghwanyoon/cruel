@@ -2,8 +2,8 @@ package io.fana.cruel.domain.order.application
 
 import com.appmattus.kotlinfixture.kotlinFixture
 import io.fana.cruel.core.type.OrderStatus
-import io.fana.cruel.domain.order.OrderTerm
 import io.fana.cruel.domain.order.domain.Order
+import io.fana.cruel.domain.order.domain.OrderTerm
 import io.fana.cruel.domain.schedule.application.CreateReturnScheduleService
 import io.fana.cruel.domain.schedule.domain.ReturnSchedule
 import io.kotest.core.spec.IsolationMode

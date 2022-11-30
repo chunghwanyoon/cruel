@@ -4,8 +4,6 @@ import io.fana.cruel.core.type.DelayStatus
 import io.fana.cruel.core.type.OrderStatus
 import io.fana.cruel.domain.admin.domain.Admin
 import io.fana.cruel.domain.base.BaseEntity
-import io.fana.cruel.domain.order.OrderInterestRate
-import io.fana.cruel.domain.order.OrderTerm
 import io.fana.cruel.domain.order.exception.InvalidOrderStatusException
 import io.fana.cruel.domain.user.domain.User
 import org.hibernate.envers.Audited

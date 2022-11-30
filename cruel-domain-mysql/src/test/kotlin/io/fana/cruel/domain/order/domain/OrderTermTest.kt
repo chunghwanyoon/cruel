@@ -1,6 +1,5 @@
 package io.fana.cruel.domain.order.domain
 
-import io.fana.cruel.domain.order.OrderTerm
 import io.fana.cruel.domain.order.exception.InvalidOrderTermException
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.IsolationMode

@@ -2,7 +2,6 @@ package io.fana.cruel.domain.order.domain
 
 import com.appmattus.kotlinfixture.kotlinFixture
 import io.fana.cruel.core.type.OrderStatus
-import io.fana.cruel.domain.order.OrderTerm
 import io.fana.cruel.domain.order.exception.InvalidOrderStatusException
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.IsolationMode

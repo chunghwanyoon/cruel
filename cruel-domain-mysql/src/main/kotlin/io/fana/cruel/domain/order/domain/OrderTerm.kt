@@ -1,4 +1,4 @@
-package io.fana.cruel.domain.order
+package io.fana.cruel.domain.order.domain
 
 import io.fana.cruel.domain.order.exception.InvalidOrderTermException
 
