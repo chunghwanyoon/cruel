@@ -33,7 +33,11 @@ enum class ErrorCode(
     INVALID_ORDER_TERM(ErrorGroup.ORDER, "003", "ERR_INVALID_ORDER_TERM"),
 
     /* 상환 */
-    REPAYMENT_VALIDATE_FAILED(ErrorGroup.REPAYMENT, "001", "ERR_REPAYMENT_VALIDATE_FAILED");
+    REPAYMENT_VALIDATE_FAILED(ErrorGroup.REPAYMENT, "001", "ERR_REPAYMENT_VALIDATE_FAILED"),
+
+    /* 상품 */
+    PRODUCT_NOT_FOUND(ErrorGroup.PRODUCT, "001", "ERR_PRODUCT_NOT_FOUND"),
+    PRODUCT_CODE_DUPLICATED(ErrorGroup.PRODUCT, "002", "ERR_PRODUCT_CODE_DUPLICATED");
 
     val errorCode: String
         get() = group.prefix + value
