@@ -21,13 +21,13 @@ class CalculateRepaymentService {
         term: Int,
     ): List<RepaymentSchedule> {
         var remainPrincipal = totalPrincipal
-        val monthlyInterestRate = yearlyInterestRate / term
+        val monthlyInterestRate = yearlyInterestRate / MONTHLY
         // TODO: 월 상환 원리금이 항상 같도록 보정이 필요함
         return List(term) {
             var seqId = it + 1
             var interestAmount = (remainPrincipal * monthlyInterestRate).roundToInt()
             var monthlyPrincipalInterestAmount =
-                getMonthlyPrincipalInterestAmount(remainPrincipal, term - it, yearlyInterestRate)
+                getMonthlyPrincipalInterestAmount(remainPrincipal, term - it, monthlyInterestRate)
             var principal = monthlyPrincipalInterestAmount - interestAmount
             remainPrincipal -= principal
             RepaymentSchedule(
