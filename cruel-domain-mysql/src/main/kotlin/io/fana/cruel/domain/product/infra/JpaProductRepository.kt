@@ -7,6 +7,8 @@ import org.springframework.data.jpa.repository.JpaRepository
 interface JpaProductRepository : ProductRepository, JpaRepository<Product, Long> {
     override fun findAll(): List<Product>
 
+    override fun findProductsByIsActivated(isActivated: Boolean): List<Product>
+
     override fun findProductById(productId: Long): Product?
 
     override fun findProductByCode(code: String): Product?

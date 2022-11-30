@@ -15,6 +15,12 @@ class GetProductService(
         return productRepository.findAll()
     }
 
+    fun getAllActivatedProducts(): List<Product> {
+        return productRepository.findProductsByIsActivated(
+            isActivated = true
+        )
+    }
+
     fun findProductByCode(code: String): Product? = productRepository.findProductByCode(code)
 
     fun getProductById(productId: Long): Product {
