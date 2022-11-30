@@ -7,6 +7,7 @@ object Plugins {
         const val springBoot = "org.springframework.boot"
         const val springDependencyManagement = "io.spring.dependency-management"
         const val ktlint = "org.jlleitschuh.gradle.ktlint"
+        const val javaLibrary = "java-library"
     }
 
     object Module {
@@ -14,5 +15,9 @@ object Plugins {
         const val spring = "plugin.spring"
         const val jpa = "plugin.jpa"
         const val allOpen = "plugin.allopen"
+    }
+
+    object Test {
+        const val javaTestFixtures = "java-test-fixtures"
     }
 }
