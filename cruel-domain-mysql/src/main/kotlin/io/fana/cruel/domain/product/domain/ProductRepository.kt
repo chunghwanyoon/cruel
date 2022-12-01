@@ -6,6 +6,8 @@ import org.springframework.stereotype.Repository
 interface ProductRepository {
     fun findAll(): List<Product>
 
+    fun findProductsByIsActivated(isActivated: Boolean): List<Product>
+
     fun findProductById(productId: Long): Product?
 
     fun findProductByCode(code: String): Product?
