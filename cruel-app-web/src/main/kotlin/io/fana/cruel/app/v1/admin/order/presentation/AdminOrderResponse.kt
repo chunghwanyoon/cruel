@@ -1,5 +1,6 @@
 package io.fana.cruel.app.v1.admin.order.presentation
 
+import io.fana.cruel.app.v1.product.presentation.ProductResponse
 import io.fana.cruel.core.type.DelayStatus
 import io.fana.cruel.core.type.OrderStatus
 import io.fana.cruel.domain.order.domain.Order
@@ -8,6 +9,7 @@ import java.math.BigDecimal
 data class AdminOrderResponse(
     val id: Long,
     val userId: Long,
+    val product: ProductResponse,
     val adminId: Long,
     val amount: Int,
     val interestRate: BigDecimal,
@@ -20,6 +22,7 @@ data class AdminOrderResponse(
         fun of(order: Order) = AdminOrderResponse(
             id = order.id,
             userId = order.user.id,
+            product = ProductResponse.of(order.product),
             adminId = order.adminId ?: 0,
             amount = order.amount,
             interestRate = order.interestRate,
