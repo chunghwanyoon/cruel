@@ -5,6 +5,8 @@ import io.fana.cruel.core.type.OrderStatus
 import io.fana.cruel.domain.order.domain.Order
 import io.fana.cruel.domain.order.domain.OrderRepository
 import io.fana.cruel.domain.order.domain.OrderTerm
+import io.fana.cruel.domain.product.application.GetProductService
+import io.fana.cruel.domain.product.domain.Product
 import io.fana.cruel.domain.user.application.GetUserService
 import io.fana.cruel.domain.user.domain.User
 import io.kotest.core.spec.IsolationMode
@@ -18,9 +20,11 @@ internal class CreateOrderServiceTest : BehaviorSpec({
 
     val orderRepository = mockk<OrderRepository>()
     val getUserService = mockk<GetUserService>()
+    val getProductService = mockk<GetProductService>()
     val createOrderService = CreateOrderService(
         orderRepository = orderRepository,
         getUserService = getUserService,
+        getProductService = getProductService,
     )
     val fixture = kotlinFixture()
     val userFixture = fixture<User>()
@@ -30,8 +34,10 @@ internal class CreateOrderServiceTest : BehaviorSpec({
         factory<OrderTerm> { OrderTerm(validOrderTerm) }
         property(Order::content) { content }
     }
+    val productFixture = fixture<Product>()
     val orderRequest = CreateOrderRequest(
         userId = userFixture.id,
+        productId = productFixture.id,
         amount = orderFixture.amount,
         term = validOrderTerm,
         content = content,
@@ -39,6 +45,7 @@ internal class CreateOrderServiceTest : BehaviorSpec({
 
     given("주문 요청이 주어졌을 때") {
         every { getUserService.getUserById(userFixture.id) } returns userFixture
+        every { getProductService.getProductById(productFixture.id) } returns productFixture
 
         `when`("주문을 생성하면") {
             every { orderRepository.save(orderFixture) } returns orderFixture

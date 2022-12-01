@@ -5,6 +5,7 @@ import io.fana.cruel.core.type.OrderStatus
 import io.fana.cruel.domain.admin.domain.Admin
 import io.fana.cruel.domain.base.BaseEntity
 import io.fana.cruel.domain.order.exception.InvalidOrderStatusException
+import io.fana.cruel.domain.product.domain.Product
 import io.fana.cruel.domain.user.domain.User
 import org.hibernate.envers.Audited
 import org.hibernate.envers.NotAudited
@@ -27,6 +28,8 @@ import javax.persistence.Table
     name = "orders",
     indexes = [
         Index(name = "idx_orders_user_id", columnList = "user_id"),
+        Index(name = "idx_orders_product_id", columnList = "product_id"),
+        // TODO: covered index
         Index(name = "idx_orders_status", columnList = "status"),
         Index(name = "idx_orders_delay_status", columnList = "delay_status"),
         Index(name = "idx_orders_interest_rate", columnList = "interest_rate"),
@@ -36,6 +39,14 @@ import javax.persistence.Table
 @Entity
 @Audited
 class Order(
+    @ManyToOne
+    @JoinColumn(
+        name = "product_id",
+        foreignKey = ForeignKey(ConstraintMode.NO_CONSTRAINT),
+        nullable = false
+    )
+    val product: Product,
+
     @ManyToOne
     @JoinColumn(
         name = "user_id",
