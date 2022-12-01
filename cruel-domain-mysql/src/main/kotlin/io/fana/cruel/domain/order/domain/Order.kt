@@ -39,13 +39,13 @@ import org.springframework.data.annotation.LastModifiedDate
 @Entity
 @Audited
 class Order(
-    @NotAudited
     @ManyToOne
     @JoinColumn(
         name = "product_id",
         foreignKey = ForeignKey(ConstraintMode.NO_CONSTRAINT),
         nullable = false
     )
+    @NotAudited
     val product: Product,
 
     @ManyToOne
