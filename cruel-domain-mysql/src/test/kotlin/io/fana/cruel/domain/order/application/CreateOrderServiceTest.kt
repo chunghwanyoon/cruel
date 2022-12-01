@@ -14,6 +14,8 @@ import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.matchers.shouldBe
 import io.mockk.every
 import io.mockk.mockk
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 internal class CreateOrderServiceTest : BehaviorSpec({
     isolationMode = IsolationMode.InstancePerLeaf
@@ -30,15 +32,18 @@ internal class CreateOrderServiceTest : BehaviorSpec({
     val userFixture = fixture<User>()
     val validOrderTerm = 3
     val content = ""
+    val productPrice = 500_000
+    val productFixture = fixture<Product> {
+        property(Product::price) { productPrice }
+    }
     val orderFixture = fixture<Order> {
         factory<OrderTerm> { OrderTerm(validOrderTerm) }
         property(Order::content) { content }
+        property(Order::amount) { productPrice }
     }
-    val productFixture = fixture<Product>()
     val orderRequest = CreateOrderRequest(
         userId = userFixture.id,
         productId = productFixture.id,
-        amount = orderFixture.amount,
         term = validOrderTerm,
         content = content,
     )
@@ -51,10 +56,12 @@ internal class CreateOrderServiceTest : BehaviorSpec({
             every { orderRepository.save(orderFixture) } returns orderFixture
 
             then("주문이 생성된다") {
-                val order = createOrderService.requestOrder(orderRequest)
+                val order = withContext(Dispatchers.IO) {
+                    createOrderService.requestOrder(orderRequest)
+                }
 
                 order.user.id shouldBe userFixture.id
-                order.amount shouldBe orderRequest.amount
+                order.amount shouldBe productPrice
                 order.term shouldBe validOrderTerm
                 order.content shouldBe orderRequest.content
                 order.status shouldBe OrderStatus.CREATED

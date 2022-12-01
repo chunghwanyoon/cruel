@@ -22,7 +22,7 @@ class CreateOrderService(
         val order = Order(
             user = user,
             product = product,
-            amount = request.amount,
+            amount = product.price,
             interestRate = generateOrderInterestRate(),
             orderTerm = OrderTerm(request.term),
             content = request.content,
