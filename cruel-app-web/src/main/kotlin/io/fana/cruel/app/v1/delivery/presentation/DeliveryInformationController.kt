@@ -3,8 +3,8 @@ package io.fana.cruel.app.v1.delivery.presentation
 import io.fana.cruel.app.security.LoginUser
 import io.fana.cruel.app.v1.user.presentation.DeliveryInformationResponse
 import io.fana.cruel.domain.delivery.application.CreateDeliveryInformationService
+import io.fana.cruel.domain.delivery.application.DeleteDeliveryInformationService
 import io.fana.cruel.domain.delivery.application.DeliveryInformationRequest
-import io.fana.cruel.domain.delivery.application.UpdateDeliveryInformationService
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.Parameter
 import io.swagger.v3.oas.annotations.responses.ApiResponse
@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RestController
 @RequestMapping("/api/v1/delivery-informations")
 class DeliveryInformationController(
     private val createDeliveryInformationService: CreateDeliveryInformationService,
-    private val updateDeliveryInformationService: UpdateDeliveryInformationService,
+    private val deleteDeliveryInformationService: DeleteDeliveryInformationService,
 ) {
     @Operation(operationId = "createDeliveryInformation", description = "배송 정보 생성")
     @ApiResponse(description = "생성 성공", responseCode = "201")
@@ -36,17 +36,14 @@ class DeliveryInformationController(
         )
     }
 
-    @Operation(operationId = "updateDeliveryInformation", description = "배송 정보 수정")
-    @ApiResponse(description = "수정 성공", responseCode = "200")
+    @Operation(operationId = "deleteDeliveryInformation", description = "배송 정보 삭제")
+    @ApiResponse(description = "성공", responseCode = "204")
     @PutMapping("/{deliveryInformationId}")
-    fun updateDeliveryInformation(
+    fun deleteDeliveryInformation(
         @Parameter(hidden = true)
         loginUser: LoginUser,
         @PathVariable("deliveryInformationId") deliveryInformationId: Long,
-        @RequestBody request: DeliveryInformationRequest,
-    ): DeliveryInformationResponse {
-        return DeliveryInformationResponse.of(
-            updateDeliveryInformationService.updateDeliveryInformation(loginUser.id, deliveryInformationId, request)
-        )
+    ) {
+        deleteDeliveryInformationService.deleteById(deliveryInformationId)
     }
 }

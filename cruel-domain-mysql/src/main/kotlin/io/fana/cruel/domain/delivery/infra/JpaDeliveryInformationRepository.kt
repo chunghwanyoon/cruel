@@ -20,5 +20,7 @@ interface JpaDeliveryInformationRepository : DeliveryInformationRepository, JpaR
 
     override fun findDeliveryInformationById(deliveryInformationId: Long): DeliveryInformation?
 
+    override fun deleteDeliveryInformationById(deliveryInformationId: Long)
+
     override fun save(information: DeliveryInformation): DeliveryInformation
 }

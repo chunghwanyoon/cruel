@@ -10,5 +10,7 @@ interface DeliveryInformationRepository {
 
     fun findDeliveryInformationById(deliveryInformationId: Long): DeliveryInformation?
 
+    fun deleteDeliveryInformationById(deliveryInformationId: Long)
+
     fun save(information: DeliveryInformation): DeliveryInformation
 }
