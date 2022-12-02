@@ -5,11 +5,8 @@ import io.fana.cruel.core.type.OrderStatus
 import io.fana.cruel.domain.admin.domain.Admin
 import io.fana.cruel.domain.base.BaseEntity
 import io.fana.cruel.domain.order.exception.InvalidOrderStatusException
+import io.fana.cruel.domain.product.domain.Product
 import io.fana.cruel.domain.user.domain.User
-import org.hibernate.envers.Audited
-import org.hibernate.envers.NotAudited
-import org.springframework.data.annotation.CreatedDate
-import org.springframework.data.annotation.LastModifiedDate
 import java.math.BigDecimal
 import java.time.LocalDateTime
 import javax.persistence.Column
@@ -22,11 +19,17 @@ import javax.persistence.Index
 import javax.persistence.JoinColumn
 import javax.persistence.ManyToOne
 import javax.persistence.Table
+import org.hibernate.envers.Audited
+import org.hibernate.envers.NotAudited
+import org.springframework.data.annotation.CreatedDate
+import org.springframework.data.annotation.LastModifiedDate
 
 @Table(
     name = "orders",
     indexes = [
         Index(name = "idx_orders_user_id", columnList = "user_id"),
+        Index(name = "idx_orders_product_id", columnList = "product_id"),
+        // TODO: covered index
         Index(name = "idx_orders_status", columnList = "status"),
         Index(name = "idx_orders_delay_status", columnList = "delay_status"),
         Index(name = "idx_orders_interest_rate", columnList = "interest_rate"),
@@ -36,6 +39,15 @@ import javax.persistence.Table
 @Entity
 @Audited
 class Order(
+    @ManyToOne
+    @JoinColumn(
+        name = "product_id",
+        foreignKey = ForeignKey(ConstraintMode.NO_CONSTRAINT),
+        nullable = false
+    )
+    @NotAudited
+    val product: Product,
+
     @ManyToOne
     @JoinColumn(
         name = "user_id",
