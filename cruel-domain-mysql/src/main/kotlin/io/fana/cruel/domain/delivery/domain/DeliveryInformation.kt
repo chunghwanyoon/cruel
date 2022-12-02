@@ -1,13 +1,13 @@
 package io.fana.cruel.domain.delivery.domain
 
 import io.fana.cruel.domain.base.BaseEntity
+import org.springframework.data.annotation.CreatedDate
+import org.springframework.data.annotation.LastModifiedDate
 import java.time.LocalDateTime
 import javax.persistence.Column
 import javax.persistence.Entity
 import javax.persistence.Index
 import javax.persistence.Table
-import org.springframework.data.annotation.CreatedDate
-import org.springframework.data.annotation.LastModifiedDate
 
 @Table(
     name = "delivery_informations",
