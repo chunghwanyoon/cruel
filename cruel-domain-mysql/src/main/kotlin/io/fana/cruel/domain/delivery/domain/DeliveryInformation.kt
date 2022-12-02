@@ -44,7 +44,14 @@ class DeliveryInformation(
     var updatedAt: LocalDateTime = LocalDateTime.MIN
         private set
 
-    fun updateIsPrimary(primary: Boolean) {
-        this.isPrimary = primary
+    fun updateInfo(address: String, detailAddress: String, isPrimary: Boolean): DeliveryInformation {
+        this.address = address
+        this.detailAddress = detailAddress
+        this.isPrimary = isPrimary
+        return this
+    }
+
+    fun disablePrimary() {
+        this.isPrimary = false
     }
 }

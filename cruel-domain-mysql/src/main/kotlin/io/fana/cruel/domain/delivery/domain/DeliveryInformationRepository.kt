@@ -8,5 +8,7 @@ interface DeliveryInformationRepository {
 
     fun findDeliveryInformationsByUserId(userId: Long): List<DeliveryInformation>
 
+    fun findDeliveryInformationById(deliveryInformationId: Long): DeliveryInformation?
+
     fun save(information: DeliveryInformation): DeliveryInformation
 }

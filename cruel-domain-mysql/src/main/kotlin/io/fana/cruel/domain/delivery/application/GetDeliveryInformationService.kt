@@ -20,6 +20,11 @@ class GetDeliveryInformationService(
         return deliveryInformationRepository.findPrimeDeliveryInformationByUserId(userId)
     }
 
+    fun getDeliveryInformationById(deliveryInformationId: Long): DeliveryInformation {
+        return deliveryInformationRepository.findDeliveryInformationById(deliveryInformationId)
+            ?: throw DeliveryInformationNotFoundException.ofId(deliveryInformationId)
+    }
+
     fun getDeliveryInformationsByUserId(userId: Long): List<DeliveryInformation> {
         return deliveryInformationRepository.findDeliveryInformationsByUserId(userId)
     }

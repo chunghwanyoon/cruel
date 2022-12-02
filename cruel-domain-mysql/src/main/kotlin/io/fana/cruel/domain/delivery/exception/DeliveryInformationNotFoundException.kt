@@ -10,5 +10,8 @@ class DeliveryInformationNotFoundException(
     companion object {
         fun ofPrime(userId: Long) =
             DeliveryInformationNotFoundException("유저의 기본 배송지 정보를 찾을 수 없습니다. userId: $userId")
+
+        fun ofId(deliveryInformationId: Long) =
+            DeliveryInformationNotFoundException("배송정보를 찾을 수 없습니다. deliveryInformationId: $deliveryInformationId")
     }
 }

@@ -33,13 +33,12 @@ internal class CreateDeliveryInformationServiceTest : BehaviorSpec({
         property(DeliveryInformation::userId) { userFixture.id }
         property(DeliveryInformation::isPrimary) { true }
     }
-    val request = fixture<CreateDeliveryInformationRequest> {
-        property(CreateDeliveryInformationRequest::userId) { userFixture.id }
-        property(CreateDeliveryInformationRequest::isPrimary) { true }
+    val request = fixture<DeliveryInformationRequest> {
+        property(DeliveryInformationRequest::isPrimary) { true }
     }
 
     given("배송 생성 정보가 주어졌을 때") {
-        every { getUserService.getUserById(request.userId) } returns userFixture
+        every { getUserService.getUserById(userFixture.id) } returns userFixture
         every { deliveryInformationRepository.save(primeDeliveryInfo) } returns primeDeliveryInfo
         every {
             getDeliveryInformationService.findPrimaryDeliveryInformationByUserId(userFixture.id)
@@ -48,7 +47,7 @@ internal class CreateDeliveryInformationServiceTest : BehaviorSpec({
         `when`("배송 정보를 생성하려고 하면") {
             then("배송 정보가 생성된다") {
                 val information = withContext(Dispatchers.IO) {
-                    createDeliveryInformationService.createDeliveryInformation(request)
+                    createDeliveryInformationService.createDeliveryInformation(userFixture.id, request)
                 }
                 information.userId shouldBe userFixture.id
                 information.isPrimary shouldBe true
