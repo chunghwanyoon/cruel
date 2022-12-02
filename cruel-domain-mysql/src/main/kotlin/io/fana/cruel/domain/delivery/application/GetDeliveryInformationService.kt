@@ -12,8 +12,12 @@ class GetDeliveryInformationService(
     private val deliveryInformationRepository: DeliveryInformationRepository,
 ) {
     fun getPrimaryDeliveryInformationByUserId(userId: Long): DeliveryInformation {
-        return deliveryInformationRepository.findPrimeDeliveryInformationByUserId(userId)
+        return findPrimaryDeliveryInformationByUserId(userId)
             ?: throw DeliveryInformationNotFoundException.ofPrime(userId)
+    }
+
+    fun findPrimaryDeliveryInformationByUserId(userId: Long): DeliveryInformation? {
+        return deliveryInformationRepository.findPrimeDeliveryInformationByUserId(userId)
     }
 
     fun getDeliveryInformationsByUserId(userId: Long): List<DeliveryInformation> {

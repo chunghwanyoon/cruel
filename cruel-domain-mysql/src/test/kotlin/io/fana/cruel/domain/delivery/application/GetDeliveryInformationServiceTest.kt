@@ -3,6 +3,8 @@ package io.fana.cruel.domain.delivery.application
 import com.appmattus.kotlinfixture.kotlinFixture
 import io.fana.cruel.domain.delivery.domain.DeliveryInformation
 import io.fana.cruel.domain.delivery.domain.DeliveryInformationRepository
+import io.fana.cruel.domain.delivery.exception.DeliveryInformationNotFoundException
+import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.IsolationMode
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.matchers.shouldBe
@@ -40,6 +42,15 @@ internal class GetDeliveryInformationServiceTest : BehaviorSpec({
                 }
                 information.userId shouldBe userId
                 information.isPrimary shouldBe true
+            }
+        }
+
+        `when`("기본 배송 정보가 존재하지 않으면") {
+            every { deliveryInformationRepository.findPrimeDeliveryInformationByUserId(userId) } returns null
+            then("예외가 발생한다") {
+                shouldThrow<DeliveryInformationNotFoundException> {
+                    getDeliveryInformationService.getPrimaryDeliveryInformationByUserId(userId)
+                }
             }
         }
 
