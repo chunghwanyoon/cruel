@@ -7,6 +7,10 @@ import io.fana.cruel.domain.base.BaseEntity
 import io.fana.cruel.domain.order.exception.InvalidOrderStatusException
 import io.fana.cruel.domain.product.domain.Product
 import io.fana.cruel.domain.user.domain.User
+import org.hibernate.envers.Audited
+import org.hibernate.envers.NotAudited
+import org.springframework.data.annotation.CreatedDate
+import org.springframework.data.annotation.LastModifiedDate
 import java.math.BigDecimal
 import java.time.LocalDateTime
 import javax.persistence.Column
@@ -19,10 +23,6 @@ import javax.persistence.Index
 import javax.persistence.JoinColumn
 import javax.persistence.ManyToOne
 import javax.persistence.Table
-import org.hibernate.envers.Audited
-import org.hibernate.envers.NotAudited
-import org.springframework.data.annotation.CreatedDate
-import org.springframework.data.annotation.LastModifiedDate
 
 @Table(
     name = "orders",
