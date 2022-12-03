@@ -8,6 +8,7 @@ object Dependencies {
 
     object Spring {
         const val starter = "org.springframework.boot:spring-boot-starter"
+        const val starterBatch = "org.springframework.boot:spring-boot-starter-batch"
         const val web = "org.springframework.boot:spring-boot-starter-web"
         const val retry = "org.springframework.retry:spring-retry"
         const val configProcessor = "org.springframework.boot:spring-boot-configuration-processor"
