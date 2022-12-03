@@ -37,7 +37,10 @@ enum class ErrorCode(
 
     /* 상품 */
     PRODUCT_NOT_FOUND(ErrorGroup.PRODUCT, "001", "ERR_PRODUCT_NOT_FOUND"),
-    PRODUCT_CODE_DUPLICATED(ErrorGroup.PRODUCT, "002", "ERR_PRODUCT_CODE_DUPLICATED");
+    PRODUCT_CODE_DUPLICATED(ErrorGroup.PRODUCT, "002", "ERR_PRODUCT_CODE_DUPLICATED"),
+
+    /* 배송 */
+    DELIVERY_INFORMATION_NOT_FOUND(ErrorGroup.DELIVERY, "001", "ERR_DELIVERY_INFORMATION_NOT_FOUND");
 
     val errorCode: String
         get() = group.prefix + value
