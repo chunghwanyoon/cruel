@@ -1,0 +1,20 @@
+spring:
+    config:
+        import: classpath:cruel-db.yml
+    application:
+        name: cruel-app-console-batch
+    profiles:
+        active: local
+        group:
+            local: common, local
+            develop: common, develop
+            production: common, production
+    batch.job.names: ${job.name:EMPTY}
+#---
+#spring:
+#    jpa:
+#        properties:
+#            hibernate:
+#                format_sql: true
+#                show_sql: true
+#                use_sql_comments: true
