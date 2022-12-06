@@ -46,6 +46,7 @@ object Dependencies {
         const val mockk = "io.mockk:mockk:${Versions.mockk}"
         const val springMockk = "com.ninja-squad:springmockk:${Versions.springMockk}"
         const val kotlinFixture = "com.appmattus.fixture:fixture:${Versions.kotlinFixture}"
+        const val faker = "com.github.javafaker:javafaker:${Versions.faker}"
     }
 
     object Logging {

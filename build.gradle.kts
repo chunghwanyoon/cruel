@@ -58,6 +58,7 @@ subprojects {
         testImplementation(Dependencies.Test.kotestProperty)
         testImplementation(Dependencies.Test.mockk)
         testImplementation(Dependencies.Test.springMockk)
-        testImplementation(Dependencies.Test.kotlinFixture)
+        api(Dependencies.Test.kotlinFixture)
+        api(Dependencies.Test.faker)
     }
 }
