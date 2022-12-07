@@ -11,3 +11,4 @@ include("cruel-domain-mysql")
 
 // executable applications
 include("cruel-app-web")
+include("cruel-app-console-batch")

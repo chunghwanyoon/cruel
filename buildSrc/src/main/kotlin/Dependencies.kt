@@ -8,6 +8,7 @@ object Dependencies {
 
     object Spring {
         const val starter = "org.springframework.boot:spring-boot-starter"
+        const val starterBatch = "org.springframework.boot:spring-boot-starter-batch"
         const val web = "org.springframework.boot:spring-boot-starter-web"
         const val retry = "org.springframework.retry:spring-retry"
         const val configProcessor = "org.springframework.boot:spring-boot-configuration-processor"
@@ -45,6 +46,7 @@ object Dependencies {
         const val mockk = "io.mockk:mockk:${Versions.mockk}"
         const val springMockk = "com.ninja-squad:springmockk:${Versions.springMockk}"
         const val kotlinFixture = "com.appmattus.fixture:fixture:${Versions.kotlinFixture}"
+        const val faker = "com.github.javafaker:javafaker:${Versions.faker}"
     }
 
     object Logging {
