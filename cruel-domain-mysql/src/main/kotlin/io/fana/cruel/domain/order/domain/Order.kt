@@ -29,7 +29,7 @@ import javax.persistence.Table
     indexes = [
         Index(name = "idx_orders_user_id", columnList = "user_id"),
         Index(name = "idx_orders_product_id", columnList = "product_id"),
-        // TODO: covered index
+        // TODO: covering index
         Index(name = "idx_orders_status", columnList = "status"),
         Index(name = "idx_orders_delay_status", columnList = "delay_status"),
         Index(name = "idx_orders_interest_rate", columnList = "interest_rate"),

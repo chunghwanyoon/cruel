@@ -10,5 +10,6 @@ enum class ErrorGroup(
     ADMIN("05"),
     REPAYMENT("06"),
     PRODUCT("07"),
-    DELIVERY("08");
+    DELIVERY("08"),
+    KYC("09");
 }
